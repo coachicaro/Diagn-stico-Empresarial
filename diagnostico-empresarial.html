@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Syros Financial · Diagnóstico Empresarial</title>
+<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,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">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F2F3F7;
+    --surface: #FFFFFF;
+    --border: #DDE0EC;
+    --border-strong: #B8BDCF;
+    --text: #1A1917;
+    --text-2: #5C5850;
+    --text-3: #9C9890;
+    --accent: #2A3568;
+    --accent-hover: #1f2854;
+    --accent-light: #E8EAF3;
+    --accent-text: #1A2050;
+    --danger: #C0392B;
+    --danger-light: #FDECEA;
+    --gold: #4A5899;
+    --gold-light: #E8EAF3;
+    --success: #16A34A;
+    --success-light: #DCFCE7;
+    --warning: #D97706;
+    --warning-light: #FEF3C7;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.6; }
+
+  /* ── APP SHELL ── */
+  .app { display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { width: 240px; min-width: 240px; background: var(--accent); color: #fff; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+  .sidebar-logo { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 12px; }
+  .sidebar-logo-img { width: 40px; height: 40px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+  .sidebar-logo-img img { width: 100%; height: 100%; object-fit: cover; }
+  .sidebar-logo-text .brand { font-family: "DM Serif Display", serif; font-size: 18px; color: #fff; letter-spacing: -0.3px; }
+  .sidebar-logo-text .sub { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 1px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .sidebar-nav { padding: 16px 0; flex: 1; overflow-y: auto; }
+  .nav-section { padding: 12px 24px 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 11px 24px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.7); border-left: 3px solid transparent; transition: all 0.15s; user-select: none; }
+  .nav-item:hover { color: #fff; background: rgba(255,255,255,0.06); }
+  .nav-item.active { color: #fff; background: rgba(255,255,255,0.10); border-left-color: #fff; font-weight: 500; }
+  .nav-item .ni { font-size: 16px; width: 20px; text-align: center; color: inherit; }
+  .sidebar-footer { padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.6; }
+  .sidebar-footer strong { color: rgba(255,255,255,0.7); font-size: 12px; }
+
+  /* ── MAIN ── */
+  .main { flex: 1; overflow-y: auto; min-height: 100vh; }
+  .view { display: none; padding: 36px 40px; max-width: 760px; }
+  .view.active { display: block; }
+
+  /* ── TYPOGRAPHY ── */
+  .page-title { font-family: "DM Serif Display", serif; font-size: 26px; color: var(--text); letter-spacing: -0.5px; margin-bottom: 4px; }
+  .page-sub { font-size: 13px; color: var(--text-2); margin-bottom: 28px; line-height: 1.5; }
+  .sec-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-3); margin-bottom: 10px; margin-top: 1.5rem; }
+
+  /* ── PROGRESS ── */
+  .progress-wrap { margin-bottom: 2rem; }
+  .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .progress-lbl { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .07em; }
+  .progress-pct { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .progress-bg { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .4s cubic-bezier(.4,0,.2,1); }
+  .dots { display: flex; gap: 5px; margin-top: 8px; }
+  .dot { height: 3px; border-radius: 2px; background: var(--border); transition: all .3s ease; flex: 1; }
+  .dot.done { background: var(--accent); opacity: 0.4; }
+  .dot.active { background: var(--accent); }
+
+  /* ── STEPS ── */
+  .step { display: none; }
+  .step.active { display: block; }
+  .step-eyebrow { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 3px 12px; border-radius: 99px; margin-bottom: 12px; }
+  .step-title { font-family: "DM Serif Display", serif; font-size: 22px; color: var(--text); margin-bottom: 5px; }
+  .step-desc { font-size: 13px; color: var(--text-2); margin-bottom: 1.5rem; }
+
+  /* ── QUESTION BLOCKS ── */
+  .qblock { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 10px; box-shadow: var(--shadow); transition: border-color .2s; }
+  .qblock:focus-within { border-color: var(--accent); }
+  .qlabel { display: block; font-size: 13px; font-weight: 600; color: var(--accent-text); margin-bottom: 4px; border-left: 3px solid var(--accent); padding-left: 8px; border-radius: 0; }
+  .qhint { display: block; font-size: 11px; color: var(--text-3); margin-bottom: 8px; line-height: 1.5; }
+  .opts { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+  .opt { display: flex; align-items: center; gap: 9px; padding: 7px 9px; border-radius: var(--radius-sm); border: 1px solid transparent; cursor: pointer; transition: background .12s, border-color .12s; }
+  .opt:hover { background: var(--accent-light); border-color: var(--border); }
+  .opt input[type="radio"] { accent-color: var(--accent); width: 14px; height: 14px; flex-shrink: 0; }
+  .opt span { font-size: 13px; color: var(--text-2); }
+  .opt input:checked + span { color: var(--accent-text); font-weight: 500; }
+  .text-input { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 13.5px; color: var(--text); font-family: "DM Sans", sans-serif; margin-top: 6px; outline: none; transition: border-color .2s, box-shadow .2s; }
+  .text-input::placeholder { color: var(--text-3); }
+  .text-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,53,104,0.08); background: #fff; }
+
+  /* ── BUTTONS ── */
+  .nav-row { display: flex; gap: 10px; align-items: center; margin-top: 1.5rem; }
+  .btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 20px; font-size: 13px; font-family: "DM Sans", sans-serif; font-weight: 500; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; transition: all .15s; }
+  .btn:hover { background: var(--bg); border-color: var(--border-strong); }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+  .btn-accent { background: var(--gold); color: #fff; border-color: var(--gold); }
+  .btn-accent:hover { background: #3a4778; border-color: #3a4778; }
+
+  /* ── RESUMO ── */
+  .resumo-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: 12px; color: var(--text-2); line-height: 2.1; margin-bottom: .75rem; box-shadow: var(--shadow); }
+  .resumo-box strong { color: var(--text); font-weight: 500; }
+  .rk { color: var(--text-3); }
+
+  /* ── RESULT HEADER ── */
+  .result-header { display: flex; align-items: center; gap: 14px; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+  .result-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; font-family: "DM Serif Display", serif; flex-shrink: 0; border: 2px solid var(--border); }
+  .result-name { font-family: "DM Serif Display", serif; font-size: 18px; color: var(--text); margin-bottom: 2px; }
+  .result-sub { font-size: 12px; color: var(--text-2); }
+  .result-chip { margin-left: auto; padding: 4px 12px; border-radius: 99px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .chip-alto { background: var(--danger-light); color: var(--danger); border: 1px solid #F5C0BB; }
+  .chip-medio { background: var(--warning-light); color: var(--warning); border: 1px solid #FCD34D; }
+  .chip-baixo { background: var(--success-light); color: var(--success); border: 1px solid #86EFAC; }
+
+  /* ── SCORE ── */
+  .score-center { text-align: center; margin: 0 0 1.5rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+  .score-num { font-family: "DM Serif Display", serif; font-size: 60px; line-height: 1; color: var(--text); }
+  .score-sub { font-size: 11px; color: var(--text-3); margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
+  .score-level { font-size: 15px; font-weight: 600; margin-top: 6px; }
+
+  /* ── METRIC CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+  .mcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; box-shadow: var(--shadow); }
+  .mlabel { font-size: 10px; color: var(--text-3); margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+  .mval { font-family: "DM Serif Display", serif; font-size: 28px; color: var(--text); }
+
+  /* ── RISK CARDS ── */
+  .rcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1.1rem; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow); transition: border-color .2s; }
+  .rcard:hover { border-color: var(--border-strong); }
+  .ricon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .rtitle { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .rdesc { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+  .rbadge { font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 99px; margin-left: auto; flex-shrink: 0; white-space: nowrap; text-transform: uppercase; letter-spacing: .04em; }
+  .ba { background: var(--danger-light); color: var(--danger); border: 1px solid #F5C0BB; }
+  .bm { background: var(--warning-light); color: var(--warning); border: 1px solid #FCD34D; }
+  .bb { background: var(--success-light); color: var(--success); border: 1px solid #86EFAC; }
+
+  /* ── COV BARS ── */
+  .cov-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .cov-lbl { font-size: 12px; color: var(--text-2); width: 190px; flex-shrink: 0; }
+  .cov-bg { flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .cov-bar { height: 5px; border-radius: 3px; transition: width .6s cubic-bezier(.4,0,.2,1); }
+  .cov-pct { font-size: 11px; color: var(--text-3); width: 30px; text-align: right; font-weight: 500; }
+
+  /* ── PROPOSTA CARDS ── */
+  .cov-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .95rem 1.1rem; margin-bottom: 8px; box-shadow: var(--shadow); transition: border-color .2s; }
+  .cov-card:hover { border-color: var(--border-strong); }
+  .cov-card.priority { border-left: 3px solid var(--danger); }
+  .cov-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .cov-card-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .cov-card-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
+  .cov-card-badge { font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 99px; text-transform: uppercase; letter-spacing: .05em; }
+  .badge-urg { background: var(--danger-light); color: var(--danger); border: 1px solid #F5C0BB; }
+  .badge-rec { background: var(--warning-light); color: var(--warning); border: 1px solid #FCD34D; }
+  .badge-opc { background: var(--success-light); color: var(--success); border: 1px solid #86EFAC; }
+  .cov-card-desc { font-size: 12px; color: var(--text-2); line-height: 1.55; margin-bottom: 8px; }
+  .arg-box { background: var(--accent-light); border-radius: 6px; padding: 8px 11px; border-left: 3px solid var(--accent); }
+  .arg-label { font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: .07em; text-transform: uppercase; margin-bottom: 3px; }
+  .arg-text { font-size: 12px; color: var(--accent-text); line-height: 1.55; font-style: italic; }
+
+  /* ── ROTEIRO ── */
+  .roteiro-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow); }
+  .roteiro-step { display: flex; gap: 14px; margin-bottom: 1.25rem; }
+  .roteiro-step:last-child { margin-bottom: 0; }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-body { flex: 1; }
+  .step-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .step-text { font-size: 12px; color: var(--text-2); line-height: 1.55; margin-bottom: 6px; }
+  .step-fala { background: #F0FDF4; border-left: 3px solid var(--success); border-radius: 0 6px 6px 0; padding: 7px 11px; font-size: 12px; color: #14532D; line-height: 1.55; font-style: italic; }
+
+  /* ── OBJEÇÕES ── */
+  .ob-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1.1rem; margin-bottom: 8px; box-shadow: var(--shadow); }
+  .ob-q { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 5px; display: flex; align-items: flex-start; gap: 8px; }
+  .ob-resp { font-size: 12px; color: var(--text-2); line-height: 1.6; }
+
+  /* ── TABS ── */
+  .view-tabs { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 4px; margin-bottom: 1.25rem; gap: 3px; box-shadow: var(--shadow); }
+  .tab-btn { flex: 1; padding: 8px 10px; border-radius: var(--radius-sm); border: none; background: transparent; color: var(--text-3); font-size: 12px; font-weight: 500; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background .15s, color .15s; display: flex; align-items: center; justify-content: center; gap: 5px; }
+  .tab-btn:hover { color: var(--text); background: var(--bg); }
+  .tab-btn.active { background: var(--accent); color: #fff; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .action-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ── TOAST ── */
+  .toast { position: fixed; bottom: 28px; right: 28px; background: var(--accent); color: #fff; padding: 12px 20px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; z-index: 9999; box-shadow: var(--shadow-lg); transform: translateY(60px); opacity: 0; transition: all .25s; pointer-events: none; display: flex; align-items: center; gap: 8px; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .sidebar { display: none; }
+    .view { padding: 1.5rem 1rem; }
+    .grid2 { grid-template-columns: 1fr; }
+    .score-num { font-size: 48px; }
+    .cov-lbl { width: 130px; }
+  }
+  @media print {
+    .sidebar, .progress-wrap, .nav-row, .view-tabs, .action-row, .toast { display: none !important; }
+    .tab-panel { display: block !important; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" role="navigation" aria-label="Menu principal">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-img"><img src="data:image/jpeg;base64,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" alt="Syros Financial" /></div>
+      <div class="sidebar-logo-text">
+        <div class="brand">Syros Financial</div>
+        <div class="sub">Diagnóstico Empresarial</div>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section">Ferramentas</div>
+      <div class="nav-item active" id="nav-diag" onclick="reiniciarNav()">
+        <i class="ti ti-shield-check ni" aria-hidden="true"></i>
+        Diagnóstico de risco
+      </div>
+      <div class="nav-item" onclick="alert('Em breve: integração com o sistema de propostas.')">
+        <i class="ti ti-file-invoice ni" aria-hidden="true"></i>
+        Propostas de saúde
+      </div>
+      <div class="nav-item" onclick="alert('Em breve.')">
+        <i class="ti ti-users ni" aria-hidden="true"></i>
+        Clientes
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <strong>Syros Financial</strong><br>
+      Sistema interno · Corretora<br><br>
+      <span style="font-size:10px;">v2.0 · Diagnóstico Empresarial</span>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main" role="main">
+    <div class="view active" id="view-diag">
+      <div class="page-title">Diagnóstico de risco empresarial</div>
+      <p class="page-sub">Conduza o mapeamento com o cliente e gere o relatório de exposição e proposta de coberturas.</p>
+
+      <!-- PROGRESS -->
+      <div class="progress-wrap" id="progress-wrap">
+        <div class="progress-header">
+          <span class="progress-lbl" id="prog-label">Passo 1 de 6</span>
+          <span class="progress-pct" id="prog-pct">16%</span>
+        </div>
+        <div class="progress-bg"><div class="progress-fill" id="prog-fill" style="width:16%"></div></div>
+        <div class="dots" id="dots" aria-hidden="true"></div>
+      </div>
+
+      <!-- ══ STEP 1 ══ -->
+      <section class="step active" id="s1" aria-label="Passo 1: Identificação">
+        <div class="step-eyebrow">Passo 1 de 6</div>
+        <h2 class="step-title">Identificação do negócio</h2>
+        <p class="step-desc">Dados iniciais para personalizar o diagnóstico de risco.</p>
+
+        <div class="qblock">
+          <label class="qlabel" for="q_nome">Nome do cliente / empresa</label>
+          <input class="text-input" id="q_nome" type="text" placeholder="Ex: Hamburgueria do João" autocomplete="off" />
+        </div>
+        <div class="qblock">
+          <label class="qlabel">Segmento principal</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="seg" value="Restaurante / Alimentação" /><span>Restaurante / Alimentação</span></label>
+            <label class="opt"><input type="radio" name="seg" value="Comércio em geral" /><span>Comércio em geral</span></label>
+            <label class="opt"><input type="radio" name="seg" value="Escritório / Serviços" /><span>Escritório / Serviços</span></label>
+            <label class="opt"><input type="radio" name="seg" value="Indústria / Galpão" /><span>Indústria / Galpão</span></label>
+            <label class="opt"><input type="radio" name="seg" value="Clínica / Saúde" /><span>Clínica / Saúde</span></label>
+            <label class="opt"><input type="radio" name="seg" value="Outro" /><span>Outro</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">Faturamento mensal estimado</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="fat" value="1" /><span>Até R$ 30 mil</span></label>
+            <label class="opt"><input type="radio" name="fat" value="2" /><span>R$ 30 mil – R$ 100 mil</span></label>
+            <label class="opt"><input type="radio" name="fat" value="3" /><span>R$ 100 mil – R$ 500 mil</span></label>
+            <label class="opt"><input type="radio" name="fat" value="4" /><span>Acima de R$ 500 mil</span></label>
+          </div>
+        </div>
+        <div class="nav-row">
+          <button class="btn btn-primary" onclick="go(2)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 2 ══ -->
+      <section class="step" id="s2" aria-label="Passo 2: Estrutura e patrimônio">
+        <div class="step-eyebrow">Passo 2 de 6</div>
+        <h2 class="step-title">Estrutura e patrimônio</h2>
+        <p class="step-desc">O que está fisicamente exposto a risco.</p>
+        <div class="qblock">
+          <label class="qlabel">O imóvel onde funciona o negócio é:</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="imovel" value="proprio_quitado" /><span>Próprio quitado</span></label>
+            <label class="opt"><input type="radio" name="imovel" value="proprio_financiado" /><span>Próprio financiado</span></label>
+            <label class="opt"><input type="radio" name="imovel" value="alugado" /><span>Alugado</span></label>
+            <label class="opt"><input type="radio" name="imovel" value="cedido" /><span>Cedido / comodato</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">Valor estimado do conteúdo e equipamentos</label>
+          <span class="qhint">Máquinas, mobiliário, mercadorias, computadores, equipamentos específicos do negócio</span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="equip" value="1" /><span>Até R$ 50 mil</span></label>
+            <label class="opt"><input type="radio" name="equip" value="2" /><span>R$ 50 mil – R$ 200 mil</span></label>
+            <label class="opt"><input type="radio" name="equip" value="3" /><span>R$ 200 mil – R$ 500 mil</span></label>
+            <label class="opt"><input type="radio" name="equip" value="4" /><span>Acima de R$ 500 mil</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">O local possui equipamentos eletrônicos sensíveis?</label>
+          <span class="qhint">Computadores, caixas, câmeras, sistemas de refrigeração, equipamentos de cozinha</span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="eletro" value="nao" /><span>Não / poucos</span></label>
+            <label class="opt"><input type="radio" name="eletro" value="moderado" /><span>Sim, moderado</span></label>
+            <label class="opt"><input type="radio" name="eletro" value="alto" /><span>Sim, alto — dependo muito deles</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">O negócio fica em área de risco de vendaval, alagamento ou granizo?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="vendaval" value="nao" /><span>Não, área tranquila</span></label>
+            <label class="opt"><input type="radio" name="vendaval" value="eventualmente" /><span>Eventualmente sim</span></label>
+            <label class="opt"><input type="radio" name="vendaval" value="sim" /><span>Sim, ocorre com frequência</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">Estoque: o negócio carrega produtos de alto valor ou perecíveis?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="estoque" value="nao" /><span>Não / mínimo</span></label>
+            <label class="opt"><input type="radio" name="estoque" value="moderado" /><span>Sim, moderado</span></label>
+            <label class="opt"><input type="radio" name="estoque" value="alto" /><span>Sim, alto valor ou perecível</span></label>
+          </div>
+        </div>
+        <div class="nav-row">
+          <button class="btn" onclick="go(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(3)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 3 ══ -->
+      <section class="step" id="s3" aria-label="Passo 3: Segurança e roubo">
+        <div class="step-eyebrow">Passo 3 de 6</div>
+        <h2 class="step-title">Segurança e roubo</h2>
+        <p class="step-desc">Exposição a furto, roubo e vulnerabilidades do local.</p>
+        <div class="qblock">
+          <label class="qlabel">O negócio já sofreu tentativa ou ocorrência de roubo / furto?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="roubo_hist" value="nao" /><span>Não</span></label>
+            <label class="opt"><input type="radio" name="roubo_hist" value="tentativa" /><span>Tentativa, sem prejuízo</span></label>
+            <label class="opt"><input type="radio" name="roubo_hist" value="sim" /><span>Sim, com prejuízo</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">O local fica em área de risco para roubo / furto?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="area_risco" value="baixo" /><span>Área segura / baixo risco</span></label>
+            <label class="opt"><input type="radio" name="area_risco" value="medio" /><span>Área de risco moderado</span></label>
+            <label class="opt"><input type="radio" name="area_risco" value="alto" /><span>Área de risco alto</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">O estabelecimento tem sistema de alarme ou câmeras?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="alarme" value="nao" /><span>Não tem nada</span></label>
+            <label class="opt"><input type="radio" name="alarme" value="parcial" /><span>Parcial (câmera ou alarme)</span></label>
+            <label class="opt"><input type="radio" name="alarme" value="sim" /><span>Sim, sistema completo</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">Há movimentação de caixa / dinheiro em espécie no local?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="caixa" value="nao" /><span>Não / quase nada</span></label>
+            <label class="opt"><input type="radio" name="caixa" value="moderado" /><span>Sim, moderado</span></label>
+            <label class="opt"><input type="radio" name="caixa" value="alto" /><span>Sim, volume relevante</span></label>
+          </div>
+        </div>
+        <div class="nav-row">
+          <button class="btn" onclick="go(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(4)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 4 ══ -->
+      <section class="step" id="s4" aria-label="Passo 4: Responsabilidade e pessoas">
+        <div class="step-eyebrow">Passo 4 de 6</div>
+        <h2 class="step-title">Responsabilidade e pessoas</h2>
+        <p class="step-desc">Exposição a terceiros, funcionários e atividade B2B.</p>
+        <div class="qblock">
+          <label class="qlabel">O negócio atende clientes fisicamente no local?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="fluxo" value="nao" /><span>Não, 100% delivery / remoto</span></label>
+            <label class="opt"><input type="radio" name="fluxo" value="poucos" /><span>Sim, poucos clientes por dia</span></label>
+            <label class="opt"><input type="radio" name="fluxo" value="muitos" /><span>Sim, grande fluxo de pessoas</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">Quantos funcionários trabalham na empresa?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="func" value="0" /><span>Nenhum (só o sócio)</span></label>
+            <label class="opt"><input type="radio" name="func" value="1_5" /><span>1 a 5 funcionários</span></label>
+            <label class="opt"><input type="radio" name="func" value="6_20" /><span>6 a 20 funcionários</span></label>
+            <label class="opt"><input type="radio" name="func" value="21+" /><span>Mais de 20 funcionários</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">A atividade envolve risco físico para os funcionários?</label>
+          <span class="qhint">Fritura, uso de máquinas, trabalho em altura, produtos químicos, carga pesada</span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="risco_f" value="nao" /><span>Não</span></label>
+            <label class="opt"><input type="radio" name="risco_f" value="moderado" /><span>Risco moderado</span></label>
+            <label class="opt"><input type="radio" name="risco_f" value="alto" /><span>Risco alto</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">A empresa presta serviços ou vende para outras empresas (B2B)?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="b2b" value="nao" /><span>Não, só consumidor final</span></label>
+            <label class="opt"><input type="radio" name="b2b" value="eventual" /><span>Eventualmente</span></label>
+            <label class="opt"><input type="radio" name="b2b" value="sim" /><span>Sim, principalmente B2B</span></label>
+          </div>
+        </div>
+        <div class="nav-row">
+          <button class="btn" onclick="go(3)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(5)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 5 ══ -->
+      <section class="step" id="s5" aria-label="Passo 5: Proteção e continuidade">
+        <div class="step-eyebrow">Passo 5 de 6</div>
+        <h2 class="step-title">Proteção atual e continuidade</h2>
+        <p class="step-desc">O que já existe e o que está descoberto hoje.</p>
+        <div class="qblock">
+          <label class="qlabel">O negócio tem algum seguro empresarial ativo?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="seg_atual" value="nao" /><span>Não tem nenhum</span></label>
+            <label class="opt"><input type="radio" name="seg_atual" value="basico" /><span>Tem algo básico apenas</span></label>
+            <label class="opt"><input type="radio" name="seg_atual" value="completo" /><span>Tem e acredita estar bem coberto</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">Se o negócio ficasse fechado 30 dias, conseguiria sobreviver financeiramente?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="cont" value="sim" /><span>Sim, sem problema</span></label>
+            <label class="opt"><input type="radio" name="cont" value="dificuldade" /><span>Teria dificuldade</span></label>
+            <label class="opt"><input type="radio" name="cont" value="nao" /><span>Não, quebraria</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">O sócio principal tem seguro de vida ou invalidez pessoal?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="vida" value="sim" /><span>Sim</span></label>
+            <label class="opt"><input type="radio" name="vida" value="nao" /><span>Não</span></label>
+            <label class="opt"><input type="radio" name="vida" value="nao_sabe" /><span>Não sabe / incerto</span></label>
+          </div>
+        </div>
+        <div class="qblock">
+          <label class="qlabel">A empresa tem veículos (frota) no seu nome?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="frota" value="nao" /><span>Não</span></label>
+            <label class="opt"><input type="radio" name="frota" value="1_3" /><span>1 a 3 veículos</span></label>
+            <label class="opt"><input type="radio" name="frota" value="mais3" /><span>Mais de 3 veículos</span></label>
+          </div>
+        </div>
+        <div class="nav-row">
+          <button class="btn" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(6)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 6: REVISÃO ══ -->
+      <section class="step" id="s6" aria-label="Passo 6: Revisão">
+        <div class="step-eyebrow">Passo 6 de 6</div>
+        <h2 class="step-title">Revisar e gerar diagnóstico</h2>
+        <p class="step-desc">Confira as respostas antes de gerar o relatório completo.</p>
+        <div class="resumo-box" id="resumo" aria-live="polite"></div>
+        <div class="nav-row">
+          <button class="btn" onclick="go(5)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
+          <button class="btn btn-accent" onclick="gerar()"><i class="ti ti-chart-bar" aria-hidden="true"></i> Gerar diagnóstico</button>
+        </div>
+      </section>
+
+      <!-- ══ RESULTADO ══ -->
+      <section class="step" id="s-res" aria-label="Diagnóstico completo">
+        <div id="dash"></div>
+      </section>
+
+    </div><!-- /view-diag -->
+  </main>
+</div><!-- /app -->
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <i class="ti ti-check" aria-hidden="true"></i>
+  <span id="toast-msg">Copiado!</span>
+</div>
+
+<script>
+let cur = 1;
+const TOTAL = 6;
+
+function initDots() {
+  const d = document.getElementById('dots');
+  d.innerHTML = '';
+  for (let i = 1; i <= TOTAL; i++) {
+    const el = document.createElement('div');
+    el.className = 'dot' + (i < cur ? ' done' : i === cur ? ' active' : '');
+    d.appendChild(el);
+  }
+}
+initDots();
+
+function go(n) {
+  const prevId = cur > TOTAL ? 's-res' : 's' + cur;
+  document.getElementById(prevId).classList.remove('active');
+  cur = n;
+  const nextId = n > TOTAL ? 's-res' : 's' + n;
+  document.getElementById(nextId).classList.add('active');
+  const pct = Math.min(100, Math.round((n / (TOTAL + 1)) * 100));
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-label').textContent = n > TOTAL ? 'Concluído' : 'Passo ' + n + ' de ' + TOTAL;
+  initDots();
+  if (n === TOTAL) buildResumo();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function rv(name) {
+  const el = document.querySelector('input[name="' + name + '"]:checked');
+  return el ? el.value : null;
+}
+function rl(name) {
+  const el = document.querySelector('input[name="' + name + '"]:checked');
+  if (!el) return '—';
+  return el.closest('label').querySelector('span').textContent;
+}
+
+function buildResumo() {
+  const nome = document.getElementById('q_nome').value || '(não informado)';
+  const rows = [
+    ['Cliente', nome], ['Segmento', rl('seg')], ['Faturamento', rl('fat')],
+    ['Imóvel', rl('imovel')], ['Equipamentos', rl('equip')],
+    ['Eletrônicos sensíveis', rl('eletro')], ['Risco vendaval', rl('vendaval')],
+    ['Estoque', rl('estoque')], ['Histórico de roubo', rl('roubo_hist')],
+    ['Área de risco', rl('area_risco')], ['Alarme / câmeras', rl('alarme')],
+    ['Caixa em espécie', rl('caixa')], ['Fluxo de clientes', rl('fluxo')],
+    ['Funcionários', rl('func')], ['Risco físico func.', rl('risco_f')],
+    ['Atende B2B', rl('b2b')], ['Seguro atual', rl('seg_atual')],
+    ['Sobrevive 30 dias parado', rl('cont')], ['Vida do sócio', rl('vida')],
+    ['Frota', rl('frota')],
+  ];
+  document.getElementById('resumo').innerHTML = rows.map(([k, v]) =>
+    '<span class="rk">' + k + ':</span> <strong>' + v + '</strong><br/>'
+  ).join('');
+}
+
+function calcScore() {
+  let s = 0;
+  const fat = rv('fat'); if (fat==='3') s+=8; if (fat==='4') s+=15;
+  const equip = rv('equip'); if (equip==='3') s+=10; if (equip==='4') s+=18;
+  const eletro = rv('eletro'); if (eletro==='moderado') s+=6; if (eletro==='alto') s+=12;
+  const vendaval = rv('vendaval'); if (vendaval==='eventualmente') s+=5; if (vendaval==='sim') s+=11;
+  const estoque = rv('estoque'); if (estoque==='moderado') s+=5; if (estoque==='alto') s+=12;
+  const rh = rv('roubo_hist'); if (rh==='tentativa') s+=6; if (rh==='sim') s+=14;
+  const ar = rv('area_risco'); if (ar==='medio') s+=6; if (ar==='alto') s+=13;
+  const al = rv('alarme'); if (al==='nao') s+=8; if (al==='parcial') s+=3;
+  const cx = rv('caixa'); if (cx==='moderado') s+=4; if (cx==='alto') s+=9;
+  const fl = rv('fluxo'); if (fl==='poucos') s+=4; if (fl==='muitos') s+=10;
+  const fn = rv('func'); if (fn==='1_5') s+=5; if (fn==='6_20') s+=10; if (fn==='21+') s+=16;
+  const rf = rv('risco_f'); if (rf==='moderado') s+=7; if (rf==='alto') s+=14;
+  const b2 = rv('b2b'); if (b2==='eventual') s+=4; if (b2==='sim') s+=10;
+  const sa = rv('seg_atual'); if (sa==='nao') s+=18; if (sa==='basico') s+=9;
+  const ct = rv('cont'); if (ct==='dificuldade') s+=10; if (ct==='nao') s+=18;
+  const vi = rv('vida'); if (vi==='nao') s+=8; if (vi==='nao_sabe') s+=5;
+  const fr = rv('frota'); if (fr==='1_3') s+=5; if (fr==='mais3') s+=10;
+  return Math.min(100, s);
+}
+
+function buildRisks() {
+  const r = [];
+  const sa=rv('seg_atual'), eq=rv('equip'), el=rv('eletro'), vd=rv('vendaval'), es=rv('estoque');
+  const rh=rv('roubo_hist'), ar=rv('area_risco'), al=rv('alarme'), cx=rv('caixa');
+  const fl=rv('fluxo'), fn=rv('func'), rf=rv('risco_f'), b2=rv('b2b');
+  const ct=rv('cont'), vi=rv('vida'), fr=rv('frota');
+
+  if (sa==='nao') r.push({i:'ti-flame',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Incêndio e danos à estrutura',d:'O negócio não tem cobertura de incêndio. Uma única ocorrência pode representar perda total sem nenhuma indenização.'});
+  else if (sa==='basico') r.push({i:'ti-flame',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Cobertura de incêndio possivelmente insuficiente',d:'O seguro atual pode não cobrir o valor real do imóvel, conteúdo e todos os riscos físicos. Vale revisar os limites.'});
+  if (el==='alto'&&sa!=='completo') r.push({i:'ti-bolt',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Danos elétricos descobertos',d:'Alta dependência de equipamentos eletrônicos sem cobertura. Surto ou curto podem gerar prejuízo imediato.'});
+  else if (el==='moderado'&&sa==='nao') r.push({i:'ti-bolt',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de danos elétricos',d:'Equipamentos eletrônicos expostos a surtos e variações de tensão sem proteção via seguro.'});
+  if (vd==='sim') r.push({i:'ti-wind',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Vendaval e fenômenos naturais',d:'O local está em área de risco frequente. Danos por vendaval, granizo e alagamento precisam de cobertura específica.'});
+  else if (vd==='eventualmente') r.push({i:'ti-wind',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Exposição a vendaval e alagamento',d:'Mesmo esporádica, a ocorrência pode causar danos sérios. Cobertura de fenômenos naturais é recomendada.'});
+  if (rh==='sim'||ar==='alto') r.push({i:'ti-shield-off',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Alto risco de roubo e furto',d:'Histórico de sinistro ou área de risco elevado. Sem cobertura, prejuízo recai 100% sobre o negócio.'});
+  else if (ar==='medio'||cx==='alto'||al==='nao') r.push({i:'ti-shield-off',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Vulnerabilidade a roubo e furto',d:'Área de risco moderado, volume de caixa ou ausência de alarme aumentam a exposição.'});
+  if (ct==='nao') r.push({i:'ti-calendar-off',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Interrupção do negócio — risco crítico',d:'O negócio quebraria em 30 dias parado. Sem lucros cessantes, um sinistro pode encerrar a empresa.'});
+  else if (ct==='dificuldade') r.push({i:'ti-calendar-off',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de interrupção do negócio',d:'Paralisação forçada geraria dificuldade financeira séria. Lucros cessantes garante receita durante a recuperação.'});
+  if (fl==='muitos'&&sa!=='completo') r.push({i:'ti-users',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Responsabilidade civil com terceiros',d:'Grande fluxo de clientes sem RC adequada expõe o negócio a processos por acidentes no estabelecimento.'});
+  else if (fl==='poucos') r.push({i:'ti-users',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Responsabilidade civil — risco presente',d:'Mesmo com fluxo baixo, qualquer acidente com cliente pode gerar processo judicial.'});
+  if ((fn==='6_20'||fn==='21+')&&(rf==='moderado'||rf==='alto')) r.push({i:'ti-heartbeat',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Acidentes com funcionários',d:'Equipe relevante em atividade de risco. Acidente sem cobertura gera passivo trabalhista elevado.'});
+  else if (fn==='1_5'&&rf!=='nao') r.push({i:'ti-heartbeat',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de acidente laboral',d:'Mesmo equipe pequena em atividade de risco precisa de cobertura de acidentes pessoais coletivos.'});
+  if (es==='alto') r.push({i:'ti-box',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Estoque de alto valor / perecível',d:'Produtos perecíveis ou de alto valor exigem cobertura específica contra falha de energia, roubo e danos.'});
+  if (vi==='nao') r.push({i:'ti-user-shield',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Sócio principal sem proteção',d:'Ausência ou invalidez do sócio-chave pode comprometer toda a operação do negócio.'});
+  if (b2==='sim') r.push({i:'ti-file-invoice',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Responsabilidade civil profissional',d:'Prestação de serviços B2B expõe a empresa a reclamações por erros, omissões e danos ao contratante.'});
+  if (fr==='mais3') r.push({i:'ti-car',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Frota empresarial — múltiplos veículos',d:'Frota com mais de 3 veículos requer gestão de apólice com RC e cobertura de danos próprios.'});
+  else if (fr==='1_3') r.push({i:'ti-car',ib:'#DCFCE7',ic:'#16A34A',n:'baixo',t:'Frota empresarial',d:'Veículos em nome da empresa precisam de cobertura adequada separada do seguro auto pessoal.'});
+  if (r.length===0) r.push({i:'ti-shield-check',ib:'#DCFCE7',ic:'#16A34A',n:'baixo',t:'Perfil de baixo risco identificado',d:'Com base nas respostas, a exposição atual é relativamente baixa. Um seguro empresarial básico ainda é recomendado.'});
+  return r.sort((a,b)=>({'alto':0,'medio':1,'baixo':2}[a.n]-{'alto':0,'medio':1,'baixo':2}[b.n]));
+}
+
+function buildCoberturas(score) {
+  const sa=rv('seg_atual'),el=rv('eletro'),vd=rv('vendaval');
+  const ar=rv('area_risco'),cx=rv('caixa'),rh=rv('roubo_hist');
+  const ct=rv('cont'),fl=rv('fluxo'),fn=rv('func'),b2=rv('b2b');
+  return [
+    {l:'Incêndio / Estrutura',p:sa==='nao'?95:sa==='basico'?70:45,c:'#C0392B'},
+    {l:'Responsabilidade Civil',p:fl==='muitos'?90:fl==='poucos'?65:40,c:'#D97706'},
+    {l:'Lucros Cessantes',p:ct==='nao'?95:ct==='dificuldade'?80:45,c:'#16A34A'},
+    {l:'Danos Elétricos',p:el==='alto'?90:el==='moderado'?65:30,c:'#4A5899'},
+    {l:'Vendaval / Fenômenos Naturais',p:vd==='sim'?90:vd==='eventualmente'?60:25,c:'#2A3568'},
+    {l:'Roubo e Furto Qualificado',p:rh==='sim'?95:ar==='alto'?85:ar==='medio'?60:35,c:'#9f3fbf'},
+    {l:'Vida em Grupo / Acidentes',p:(fn==='6_20'||fn==='21+')?80:fn==='1_5'?50:20,c:'#0D9488'},
+    {l:'RC Profissional',p:b2==='sim'?80:b2==='eventual'?45:15,c:'#B45309'},
+  ].sort((a,b)=>b.p-a.p);
+}
+
+function buildPropostaCoberturas() {
+  const sa=rv('seg_atual'),el=rv('eletro'),vd=rv('vendaval'),fl=rv('fluxo'),fn=rv('func'),b2=rv('b2b'),ct=rv('cont');
+  const cards=[];
+  cards.push({icon:'ti-flame',ib:'#FDECEA',ic:'#C0392B',title:'Incêndio, raio e explosão',badge:'Urgente',bc:'badge-urg',priority:true,desc:'Cobertura da estrutura e conteúdo contra incêndio, queda de raio e explosão. Garante indenização para reconstrução e reposição sem comprometer o caixa.',arg:'"Um incêndio em cozinha industrial é a ocorrência mais comum em restaurantes. Fritadeiras, gás e óleo — o risco está presente todo dia. Sem esse seguro, um único sinistro pode encerrar o negócio."'});
+  cards.push({icon:'ti-calendar-off',ib:'#FDECEA',ic:'#C0392B',title:'Lucros cessantes',badge:'Urgente',bc:'badge-urg',priority:true,desc:'Garante receita mensal durante o período de paralisação por sinistro. Cobre aluguel, folha e custos fixos enquanto o estabelecimento se recupera.',arg:'"Se o senhor ficasse fechado 30 dias, como ficaria o aluguel, os funcionários, as contas? Esse seguro paga exatamente isso — é o salário do negócio enquanto ele se recupera."'});
+  if (el!=='nao') cards.push({icon:'ti-bolt',ib:'#FEF3C7',ic:'#D97706',title:'Danos elétricos',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre prejuízos em equipamentos eletrônicos causados por surto, variação de tensão e descarga elétrica. Essencial para negócios com refrigeração e sistemas eletrônicos.',arg:'"Uma câmara fria queimada num sábado à noite — perde o equipamento e todo o estoque. Essa cobertura custa pouco e evita um prejuízo de dezenas de milhares."'});
+  cards.push({icon:'ti-shield-off',ib:'#FEF3C7',ic:'#D97706',title:'Roubo e furto qualificado',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Protege mercadorias, equipamentos e dinheiro em caixa contra roubo com violência ou furto com arrombamento.',arg:'"Restaurante tem caixa, estoque perecível e equipamentos valiosos — é dos estabelecimentos mais visados. Se acontecer, o prejuízo é duplo: o roubo e a paralisação."'});
+  if (fl!=='nao') cards.push({icon:'ti-users',ib:'#FEF3C7',ic:'#D97706',title:'Responsabilidade civil — estabelecimento',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre indenizações por danos a clientes no estabelecimento. Acidentes, quedas, intoxicação alimentar — protege contra processos judiciais.',arg:'"Um cliente escorrega no banheiro e processa. Um prato causa intoxicação. A RC paga advogado e indenização — sem isso, sai do próprio bolso."'});
+  if (vd!=='nao') cards.push({icon:'ti-wind',ib:'#FEF3C7',ic:'#D97706',title:'Vendaval, granizo e fenômenos naturais',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre danos por vendaval, granizo e alagamento. Especialmente relevante no Sul do Brasil.',arg:'"No Sul, vendaval e granizo acontecem todo ano. Um evento destrói telhado, equipamentos e estoque numa tarde. Essa cobertura praticamente se paga no primeiro inverno."'});
+  if (fn!=='0') cards.push({icon:'ti-heartbeat',ib:'#E8EAF3',ic:'#2A3568',title:'Acidentes pessoais coletivos',badge:'Opcional',bc:'badge-opc',priority:false,desc:'Seguro de acidentes para funcionários — cobre morte e invalidez acidental. Reduz passivo trabalhista.',arg:'"Cozinha é ambiente de risco. Com equipe de '+rl('func')+', o custo de um acidente sem cobertura pode superar um ano inteiro de prêmio."'});
+  return cards;
+}
+
+const OBJECOES=[
+  {q:'"Nunca aconteceu nada, não preciso."',r:'Exatamente por isso é o melhor momento — enquanto está tudo bem, o seguro está disponível e o preço é o melhor. Quando acontece, já é tarde.'},
+  {q:'"Tá caro, vou pensar."',r:'Entendo. Quanto custaria substituir seus equipamentos e pagar 2 meses de aluguel parado? O seguro custa uma fração disso por mês.'},
+  {q:'"O prédio é alugado, não é meu problema."',r:'O prédio pode ser do locador, mas o conteúdo — equipamentos, estoque, instalações — é 100% seu. E o contrato de aluguel provavelmente exige seguro.'},
+  {q:'"Seguro não paga na hora que precisa."',r:'Essa preocupação é legítima com seguros mal contratados. Por isso trabalho com seguradora sólida e garanto que as coberturas estão corretas na apólice. Meu trabalho é acompanhar do início ao fim.'},
+];
+
+function gerar() {
+  const score=calcScore();
+  const nome=document.getElementById('q_nome').value||'Cliente';
+  const segLabel=rl('seg');
+  const risks=buildRisks();
+  const coberturas=buildCoberturas(score);
+  const propostaCovs=buildPropostaCoberturas();
+  const altoN=risks.filter(r=>r.n==='alto').length;
+  const medioN=risks.filter(r=>r.n==='medio').length;
+  const nivelLabel=score>=65?'Exposição alta':score>=35?'Exposição moderada':'Exposição baixa';
+  const nivelColor=score>=65?'#C0392B':score>=35?'#D97706':'#16A34A';
+  const chipClass=score>=65?'chip-alto':score>=35?'chip-medio':'chip-baixo';
+  const inits=nome.trim().split(' ').slice(0,2).map(w=>w[0]?.toUpperCase()||'').join('');
+
+  const riskCards=risks.map(r=>`
+    <div class="rcard">
+      <div class="ricon" style="background:${r.ib}"><i class="ti ${r.i}" style="color:${r.ic};font-size:16px" aria-hidden="true"></i></div>
+      <div style="flex:1"><div class="rtitle">${r.t}</div><div class="rdesc">${r.d}</div></div>
+      <span class="rbadge b${r.n[0]}">${r.n==='alto'?'Alto':r.n==='medio'?'Médio':'Baixo'}</span>
+    </div>`).join('');
+
+  const covBars=coberturas.map(c=>`
+    <div class="cov-row">
+      <span class="cov-lbl">${c.l}</span>
+      <div class="cov-bg"><div class="cov-bar" style="width:${c.p}%;background:${c.c}"></div></div>
+      <span class="cov-pct">${c.p}%</span>
+    </div>`).join('');
+
+  const propostaCards=propostaCovs.map(c=>`
+    <div class="cov-card${c.priority?' priority':''}">
+      <div class="cov-card-header">
+        <div class="cov-card-icon" style="background:${c.ib}"><i class="ti ${c.icon}" style="color:${c.ic};font-size:14px" aria-hidden="true"></i></div>
+        <span class="cov-card-title">${c.title}</span>
+        <span class="cov-card-badge ${c.bc}">${c.badge}</span>
+      </div>
+      <div class="cov-card-desc">${c.desc}</div>
+      <div class="arg-box"><div class="arg-label">Argumento de venda</div><div class="arg-text">${c.arg}</div></div>
+    </div>`).join('');
+
+  const roteiroSteps=[
+    {n:1,t:'Apresente o diagnóstico — não o produto',tx:'Comece mostrando o resultado. O score e os riscos identificados criam urgência antes de você falar de seguro.',f:`"Com base nas informações que o senhor me passou, o negócio tem score de risco ${score} — ${nivelLabel.toLowerCase()}. Deixa eu te mostrar o que isso significa na prática."`},
+    {n:2,t:'Âncora no maior medo',tx:'Para esse perfil, o maior medo é fechar. Lucros cessantes é o argumento mais forte — use antes de falar de preço.',f:'"Se o senhor tivesse um sinistro hoje e ficasse fechado 60 dias — o que aconteceria? Aluguel, funcionários, fornecedores. Esse seguro paga tudo isso enquanto o senhor reconstrói."'},
+    {n:3,t:'Apresente coberturas em blocos',tx:'Agrupe: "as urgentes" primeiro, depois "as recomendadas". Não lista tudo de uma vez.',f:'"Vou te mostrar o que é essencial, depois o que recomendo adicionar — e o senhor decide o que faz mais sentido pro momento."'},
+    {n:4,t:'Relativize o valor',tx:'Compare o prêmio com o custo de um sinistro pequeno. Um dia parado pode custar meses de prêmio.',f:'"Quanto o senhor faz num sábado? Se esse valor cobre 3 meses de prêmio, o seguro se paga com um único sábado que deixou de perder."'},
+    {n:5,t:'Fechamento — escolha limitada',tx:'Não pergunte "vai fechar?". Apresente duas opções e deixe o cliente escolher entre elas.',f:'"Tenho duas opções: a completa com todas as coberturas, e a essencial com incêndio, lucros cessantes e danos elétricos. Qual das duas faz mais sentido pra você começar?"'},
+  ].map(s=>`
+    <div class="roteiro-step">
+      <div class="step-num">${s.n}</div>
+      <div class="step-body">
+        <div class="step-title">${s.t}</div>
+        <div class="step-text">${s.tx}</div>
+        <div class="step-fala">${s.f}</div>
+      </div>
+    </div>`).join('');
+
+  const objecoesCards=OBJECOES.map(o=>`
+    <div class="ob-card">
+      <div class="ob-q"><i class="ti ti-message-question" style="font-size:15px;color:var(--text-3);flex-shrink:0;margin-top:2px" aria-hidden="true"></i>${o.q}</div>
+      <div class="ob-resp">${o.r}</div>
+    </div>`).join('');
+
+  document.getElementById('dash').innerHTML = `
+    <div class="result-header">
+      <div class="result-avatar">${inits||'?'}</div>
+      <div>
+        <div class="result-name">${nome}</div>
+        <div class="result-sub">${segLabel} · Diagnóstico empresarial</div>
+      </div>
+      <div class="result-chip ${chipClass}">${nivelLabel}</div>
+    </div>
+    <div class="score-center">
+      <div class="score-num">${score}</div>
+      <div class="score-sub">Score de exposição ao risco · 0 a 100</div>
+      <div class="score-level" style="color:${nivelColor}">${nivelLabel}</div>
+    </div>
+    <div class="grid2">
+      <div class="mcard"><div class="mlabel">Riscos críticos</div><div class="mval" style="color:#C0392B">${altoN}</div></div>
+      <div class="mcard"><div class="mlabel">Riscos moderados</div><div class="mval" style="color:#D97706">${medioN}</div></div>
+    </div>
+    <div class="view-tabs" role="tablist">
+      <button class="tab-btn active" onclick="switchTab('riscos',this)" role="tab"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Riscos</button>
+      <button class="tab-btn" onclick="switchTab('coberturas',this)" role="tab"><i class="ti ti-chart-bar" aria-hidden="true"></i> Coberturas</button>
+      <button class="tab-btn" onclick="switchTab('proposta',this)" role="tab"><i class="ti ti-file-invoice" aria-hidden="true"></i> Proposta</button>
+      <button class="tab-btn" onclick="switchTab('roteiro',this)" role="tab"><i class="ti ti-route" aria-hidden="true"></i> Roteiro</button>
+    </div>
+    <div class="tab-panel active" id="tab-riscos">
+      <div class="sec-label">Riscos e exposições identificados</div>
+      ${riskCards}
+    </div>
+    <div class="tab-panel" id="tab-coberturas">
+      <div class="sec-label">Coberturas recomendadas por prioridade</div>
+      ${covBars}
+    </div>
+    <div class="tab-panel" id="tab-proposta">
+      <div class="sec-label">Coberturas com argumentos de venda</div>
+      ${propostaCards}
+      <div class="divider"></div>
+      <div class="sec-label">Objeções comuns — como responder</div>
+      ${objecoesCards}
+    </div>
+    <div class="tab-panel" id="tab-roteiro">
+      <div class="sec-label">Roteiro da reunião de fechamento</div>
+      <div class="roteiro-wrap">${roteiroSteps}</div>
+    </div>
+    <div class="divider"></div>
+    <div class="action-row">
+      <button class="btn btn-accent" onclick="copiarResumo(${score},'${nome.replace(/'/g,"\\'")}','${segLabel.replace(/'/g,"\\'")}','${nivelLabel}',${altoN},${medioN})">
+        <i class="ti ti-copy" aria-hidden="true"></i> Copiar resumo
+      </button>
+      <button class="btn btn-primary" onclick="window.print()">
+        <i class="ti ti-printer" aria-hidden="true"></i> Imprimir / PDF
+      </button>
+      <button class="btn" onclick="reiniciar()">
+        <i class="ti ti-refresh" aria-hidden="true"></i> Novo diagnóstico
+      </button>
+    </div>
+  `;
+  go(TOTAL + 1);
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+function copiarResumo(score, nome, seg, nivel, alto, medio) {
+  const txt = `DIAGNÓSTICO DE RISCO EMPRESARIAL\n\nCliente: ${nome}\nSegmento: ${seg}\nScore de risco: ${score}/100 — ${nivel}\nRiscos críticos: ${alto}\nRiscos moderados: ${medio}\n\nSyros Financial · Diagnóstico Empresarial`;
+  navigator.clipboard.writeText(txt).then(()=>showToast('Resumo copiado!'));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+function reiniciar() {
+  document.getElementById('s-res').classList.remove('active');
+  document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  document.getElementById('q_nome').value='';
+  cur=1;
+  document.getElementById('s1').classList.add('active');
+  document.getElementById('prog-fill').style.width='16%';
+  document.getElementById('prog-pct').textContent='16%';
+  document.getElementById('prog-label').textContent='Passo 1 de 6';
+  initDots();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function reiniciarNav() {
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('nav-diag').classList.add('active');
+  reiniciar();
+}
+</script>
+</body>
+</html>
