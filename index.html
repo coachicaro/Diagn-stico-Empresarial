@@ -12,63 +12,98 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #F2F3F7;
-    --surface: #FFFFFF;
-    --border: #DDE0EC;
-    --border-strong: #B8BDCF;
-    --text: #1A1917;
-    --text-2: #5C5850;
-    --text-3: #9C9890;
-    --accent: #2A3568;
-    --accent-hover: #1f2854;
-    --accent-light: #E8EAF3;
-    --accent-text: #1A2050;
-    --danger: #C0392B;
-    --danger-light: #FDECEA;
-    --gold: #4A5899;
-    --gold-light: #E8EAF3;
-    --success: #16A34A;
-    --success-light: #DCFCE7;
-    --warning: #D97706;
-    --warning-light: #FEF3C7;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --bg: #F2F3F7; --surface: #FFFFFF; --border: #DDE0EC; --border-strong: #B8BDCF;
+    --text: #1A1917; --text-2: #5C5850; --text-3: #9C9890;
+    --accent: #2A3568; --accent-hover: #1f2854; --accent-light: #E8EAF3; --accent-text: #1A2050;
+    --danger: #C0392B; --danger-light: #FDECEA;
+    --gold: #4A5899; --gold-light: #E8EAF3;
+    --success: #16A34A; --success-light: #DCFCE7;
+    --warning: #D97706; --warning-light: #FEF3C7;
+    --radius: 10px; --radius-sm: 6px;
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
     --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
   }
   html { scroll-behavior: smooth; }
   body { font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.6; }
 
-  /* ── APP SHELL ── */
-  .app { display: flex; min-height: 100vh; }
+  /* LOGIN */
+  .login-screen { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 9000; align-items: center; justify-content: center; }
+  .login-screen.show { display: flex; }
+  .login-card { background: var(--surface); border-radius: 16px; padding: 40px 36px; max-width: 400px; width: 90%; box-shadow: var(--shadow-lg); text-align: center; }
+  .login-logo { width: 60px; height: 60px; border-radius: 12px; overflow: hidden; margin: 0 auto 14px; }
+  .login-logo img { width: 100%; height: 100%; object-fit: cover; }
+  .login-brand { font-family: "DM Serif Display", serif; font-size: 22px; color: var(--accent); margin-bottom: 2px; }
+  .login-sub { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 28px; }
+  .login-error { display: none; background: var(--danger-light); color: var(--danger); font-size: 12px; padding: 10px; border-radius: 8px; margin-bottom: 14px; }
+  .login-field { text-align: left; margin-bottom: 12px; }
+  .login-field label { display: block; font-size: 12px; font-weight: 500; color: var(--text-2); margin-bottom: 5px; }
+  .login-field input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: "DM Sans", sans-serif; outline: none; color: var(--text); background: var(--bg); transition: border-color .2s; }
+  .login-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,53,104,0.08); background: #fff; }
+  .login-btn { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: "DM Sans", sans-serif; cursor: pointer; margin-top: 4px; transition: background .15s; }
+  .login-btn:hover { background: var(--accent-hover); }
+  .login-note { font-size: 11px; color: var(--text-3); margin-top: 14px; }
 
-  /* ── SIDEBAR ── */
+  /* APP */
+  .app { display: none; min-height: 100vh; }
+  .app.show { display: flex; }
+
+  /* SIDEBAR */
   .sidebar { width: 240px; min-width: 240px; background: var(--accent); color: #fff; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
-  .sidebar-logo { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 12px; }
-  .sidebar-logo-img { width: 40px; height: 40px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+  .sidebar-logo { padding: 22px 20px 18px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 10px; }
+  .sidebar-logo-img { width: 36px; height: 36px; border-radius: 7px; overflow: hidden; flex-shrink: 0; }
   .sidebar-logo-img img { width: 100%; height: 100%; object-fit: cover; }
-  .sidebar-logo-text .brand { font-family: "DM Serif Display", serif; font-size: 18px; color: #fff; letter-spacing: -0.3px; }
-  .sidebar-logo-text .sub { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 1px; text-transform: uppercase; letter-spacing: 0.08em; }
-  .sidebar-nav { padding: 16px 0; flex: 1; overflow-y: auto; }
-  .nav-section { padding: 12px 24px 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); }
-  .nav-item { display: flex; align-items: center; gap: 10px; padding: 11px 24px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.7); border-left: 3px solid transparent; transition: all 0.15s; user-select: none; }
+  .sidebar-logo-text .brand { font-family: "DM Serif Display", serif; font-size: 17px; color: #fff; }
+  .sidebar-logo-text .sub { font-size: 10px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: .08em; margin-top: 1px; }
+  .sidebar-nav { padding: 12px 0; flex: 1; overflow-y: auto; }
+  .nav-section { padding: 10px 22px 3px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,0.28); }
+  .nav-item { display: flex; align-items: center; gap: 9px; padding: 10px 22px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.7); border-left: 3px solid transparent; transition: all .15s; user-select: none; }
   .nav-item:hover { color: #fff; background: rgba(255,255,255,0.06); }
   .nav-item.active { color: #fff; background: rgba(255,255,255,0.10); border-left-color: #fff; font-weight: 500; }
-  .nav-item .ni { font-size: 16px; width: 20px; text-align: center; color: inherit; }
-  .sidebar-footer { padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.6; }
-  .sidebar-footer strong { color: rgba(255,255,255,0.7); font-size: 12px; }
+  .nav-item .ni { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+  .nav-badge { margin-left: auto; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); font-size: 10px; padding: 1px 7px; border-radius: 99px; font-weight: 600; flex-shrink: 0; }
+  .nav-arrow { font-size: 9px; margin-left: 4px; transition: transform .2s; flex-shrink: 0; }
+  .nav-arrow.open { transform: rotate(90deg); }
 
-  /* ── MAIN ── */
+  /* SUBMENU */
+  .submenu { display: none; max-height: 280px; overflow-y: auto; background: rgba(0,0,0,0.12); }
+  .submenu.open { display: block; }
+  .submenu-search { padding: 8px 12px 8px 22px; }
+  .submenu-search input { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 5px 10px; font-size: 12px; color: #fff; font-family: "DM Sans", sans-serif; outline: none; }
+  .submenu-search input::placeholder { color: rgba(255,255,255,0.35); }
+  .submenu-item { display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px 8px 22px; cursor: pointer; border-left: 3px solid transparent; transition: background .12s; }
+  .submenu-item:hover { background: rgba(255,255,255,0.07); border-left-color: rgba(255,255,255,0.3); }
+  .submenu-item.active { background: rgba(255,255,255,0.12); border-left-color: #fff; }
+  .submenu-item-info { flex: 1; min-width: 0; }
+  .submenu-item-name { font-size: 12px; font-weight: 500; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .submenu-item-meta { font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 1px; }
+  .submenu-item-score { font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 99px; flex-shrink: 0; margin-top: 2px; }
+  .score-alto { background: rgba(192,57,43,0.35); color: #FCA5A5; }
+  .score-medio { background: rgba(217,119,6,0.35); color: #FCD34D; }
+  .score-baixo { background: rgba(22,163,74,0.3); color: #86EFAC; }
+  .submenu-empty { padding: 12px 22px; font-size: 11px; color: rgba(255,255,255,0.3); font-style: italic; }
+  .sidebar-footer { padding: 14px 22px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.6; }
+  .sidebar-footer strong { display: block; font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 2px; }
+  .sync-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 11px; color: rgba(255,255,255,0.4); }
+  .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; transition: background .3s; }
+  .sync-dot.ok { background: #4ade80; }
+  .sync-dot.err { background: #f87171; }
+  .sync-dot.loading { background: #fbbf24; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .btn-logout { width: 100%; margin-top: 8px; padding: 5px 10px; font-size: 11px; color: rgba(255,100,100,0.8); border: 1px solid rgba(255,100,100,0.3); background: rgba(255,80,80,0.08); border-radius: var(--radius-sm); cursor: pointer; font-family: "DM Sans", sans-serif; text-align: center; transition: background .15s; }
+  .btn-logout:hover { background: rgba(255,80,80,0.15); }
+
+  /* MAIN */
   .main { flex: 1; overflow-y: auto; min-height: 100vh; }
   .view { display: none; padding: 36px 40px; max-width: 760px; }
-  .view.active { display: block; }
+  .view.active { display: block; animation: fadeIn .2s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
 
-  /* ── TYPOGRAPHY ── */
-  .page-title { font-family: "DM Serif Display", serif; font-size: 26px; color: var(--text); letter-spacing: -0.5px; margin-bottom: 4px; }
-  .page-sub { font-size: 13px; color: var(--text-2); margin-bottom: 28px; line-height: 1.5; }
-  .sec-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-3); margin-bottom: 10px; margin-top: 1.5rem; }
+  /* TYPOGRAPHY */
+  .page-title { font-family: "DM Serif Display", serif; font-size: 26px; color: var(--text); letter-spacing: -.5px; margin-bottom: 4px; }
+  .page-sub { font-size: 13px; color: var(--text-2); margin-bottom: 28px; }
+  .sec-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; color: var(--text-3); margin: 1.5rem 0 .6rem; }
 
-  /* ── PROGRESS ── */
+  /* PROGRESS */
   .progress-wrap { margin-bottom: 2rem; }
   .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .progress-lbl { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .07em; }
@@ -77,21 +112,21 @@
   .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .4s cubic-bezier(.4,0,.2,1); }
   .dots { display: flex; gap: 5px; margin-top: 8px; }
   .dot { height: 3px; border-radius: 2px; background: var(--border); transition: all .3s ease; flex: 1; }
-  .dot.done { background: var(--accent); opacity: 0.4; }
+  .dot.done { background: var(--accent); opacity: .4; }
   .dot.active { background: var(--accent); }
 
-  /* ── STEPS ── */
+  /* STEPS */
   .step { display: none; }
   .step.active { display: block; }
   .step-eyebrow { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 3px 12px; border-radius: 99px; margin-bottom: 12px; }
   .step-title { font-family: "DM Serif Display", serif; font-size: 22px; color: var(--text); margin-bottom: 5px; }
   .step-desc { font-size: 13px; color: var(--text-2); margin-bottom: 1.5rem; }
 
-  /* ── QUESTION BLOCKS ── */
+  /* QUESTIONS */
   .qblock { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 10px; box-shadow: var(--shadow); transition: border-color .2s; }
   .qblock:focus-within { border-color: var(--accent); }
-  .qlabel { display: block; font-size: 13px; font-weight: 600; color: var(--accent-text); margin-bottom: 4px; border-left: 3px solid var(--accent); padding-left: 8px; border-radius: 0; }
-  .qhint { display: block; font-size: 11px; color: var(--text-3); margin-bottom: 8px; line-height: 1.5; }
+  .qlabel { display: block; font-size: 13px; font-weight: 600; color: var(--accent-text); margin-bottom: 4px; border-left: 3px solid var(--accent); padding-left: 8px; }
+  .qhint { display: block; font-size: 11px; color: var(--text-3); margin-bottom: 8px; padding-left: 11px; line-height: 1.5; }
   .opts { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
   .opt { display: flex; align-items: center; gap: 9px; padding: 7px 9px; border-radius: var(--radius-sm); border: 1px solid transparent; cursor: pointer; transition: background .12s, border-color .12s; }
   .opt:hover { background: var(--accent-light); border-color: var(--border); }
@@ -102,7 +137,7 @@
   .text-input::placeholder { color: var(--text-3); }
   .text-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,53,104,0.08); background: #fff; }
 
-  /* ── BUTTONS ── */
+  /* BUTTONS */
   .nav-row { display: flex; gap: 10px; align-items: center; margin-top: 1.5rem; }
   .btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 20px; font-size: 13px; font-family: "DM Sans", sans-serif; font-weight: 500; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; transition: all .15s; }
   .btn:hover { background: var(--bg); border-color: var(--border-strong); }
@@ -110,14 +145,17 @@
   .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
   .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
   .btn-accent { background: var(--gold); color: #fff; border-color: var(--gold); }
-  .btn-accent:hover { background: #3a4778; border-color: #3a4778; }
+  .btn-accent:hover { background: #3a4778; }
+  .btn-danger { background: var(--danger-light); color: var(--danger); border-color: #F5C0BB; }
+  .btn-danger:hover { background: #FADEDB; }
+  .btn-sm { padding: 5px 12px; font-size: 12px; }
 
-  /* ── RESUMO ── */
+  /* RESUMO */
   .resumo-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: 12px; color: var(--text-2); line-height: 2.1; margin-bottom: .75rem; box-shadow: var(--shadow); }
   .resumo-box strong { color: var(--text); font-weight: 500; }
   .rk { color: var(--text-3); }
 
-  /* ── RESULT HEADER ── */
+  /* RESULT */
   .result-header { display: flex; align-items: center; gap: 14px; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
   .result-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; font-family: "DM Serif Display", serif; flex-shrink: 0; border: 2px solid var(--border); }
   .result-name { font-family: "DM Serif Display", serif; font-size: 18px; color: var(--text); margin-bottom: 2px; }
@@ -127,19 +165,16 @@
   .chip-medio { background: var(--warning-light); color: var(--warning); border: 1px solid #FCD34D; }
   .chip-baixo { background: var(--success-light); color: var(--success); border: 1px solid #86EFAC; }
 
-  /* ── SCORE ── */
   .score-center { text-align: center; margin: 0 0 1.5rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
   .score-num { font-family: "DM Serif Display", serif; font-size: 60px; line-height: 1; color: var(--text); }
   .score-sub { font-size: 11px; color: var(--text-3); margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
   .score-level { font-size: 15px; font-weight: 600; margin-top: 6px; }
 
-  /* ── METRIC CARDS ── */
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
   .mcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; box-shadow: var(--shadow); }
   .mlabel { font-size: 10px; color: var(--text-3); margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
   .mval { font-family: "DM Serif Display", serif; font-size: 28px; color: var(--text); }
 
-  /* ── RISK CARDS ── */
   .rcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1.1rem; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow); transition: border-color .2s; }
   .rcard:hover { border-color: var(--border-strong); }
   .ricon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
@@ -150,16 +185,13 @@
   .bm { background: var(--warning-light); color: var(--warning); border: 1px solid #FCD34D; }
   .bb { background: var(--success-light); color: var(--success); border: 1px solid #86EFAC; }
 
-  /* ── COV BARS ── */
   .cov-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
   .cov-lbl { font-size: 12px; color: var(--text-2); width: 190px; flex-shrink: 0; }
   .cov-bg { flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
-  .cov-bar { height: 5px; border-radius: 3px; transition: width .6s cubic-bezier(.4,0,.2,1); }
+  .cov-bar { height: 5px; border-radius: 3px; transition: width .6s; }
   .cov-pct { font-size: 11px; color: var(--text-3); width: 30px; text-align: right; font-weight: 500; }
 
-  /* ── PROPOSTA CARDS ── */
-  .cov-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .95rem 1.1rem; margin-bottom: 8px; box-shadow: var(--shadow); transition: border-color .2s; }
-  .cov-card:hover { border-color: var(--border-strong); }
+  .cov-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .95rem 1.1rem; margin-bottom: 8px; box-shadow: var(--shadow); }
   .cov-card.priority { border-left: 3px solid var(--danger); }
   .cov-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
   .cov-card-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
@@ -173,22 +205,19 @@
   .arg-label { font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: .07em; text-transform: uppercase; margin-bottom: 3px; }
   .arg-text { font-size: 12px; color: var(--accent-text); line-height: 1.55; font-style: italic; }
 
-  /* ── ROTEIRO ── */
   .roteiro-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow); }
   .roteiro-step { display: flex; gap: 14px; margin-bottom: 1.25rem; }
   .roteiro-step:last-child { margin-bottom: 0; }
-  .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .step-body { flex: 1; }
-  .step-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-  .step-text { font-size: 12px; color: var(--text-2); line-height: 1.55; margin-bottom: 6px; }
-  .step-fala { background: #F0FDF4; border-left: 3px solid var(--success); border-radius: 0 6px 6px 0; padding: 7px 11px; font-size: 12px; color: #14532D; line-height: 1.55; font-style: italic; }
+  .roto-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .roto-body { flex: 1; }
+  .roto-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .roto-text { font-size: 12px; color: var(--text-2); line-height: 1.55; margin-bottom: 6px; }
+  .roto-fala { background: #F0FDF4; border-left: 3px solid var(--success); border-radius: 0 6px 6px 0; padding: 7px 11px; font-size: 12px; color: #14532D; line-height: 1.55; font-style: italic; }
 
-  /* ── OBJEÇÕES ── */
   .ob-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1.1rem; margin-bottom: 8px; box-shadow: var(--shadow); }
   .ob-q { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 5px; display: flex; align-items: flex-start; gap: 8px; }
   .ob-resp { font-size: 12px; color: var(--text-2); line-height: 1.6; }
 
-  /* ── TABS ── */
   .view-tabs { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 4px; margin-bottom: 1.25rem; gap: 3px; box-shadow: var(--shadow); }
   .tab-btn { flex: 1; padding: 8px 10px; border-radius: var(--radius-sm); border: none; background: transparent; color: var(--text-3); font-size: 12px; font-weight: 500; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background .15s, color .15s; display: flex; align-items: center; justify-content: center; gap: 5px; }
   .tab-btn:hover { color: var(--text); background: var(--bg); }
@@ -196,15 +225,37 @@
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* ── DIVIDER ── */
+  /* HISTÓRICO */
+  .hist-list { display: flex; flex-direction: column; gap: 8px; }
+  .hist-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; display: flex; align-items: flex-start; gap: 14px; box-shadow: var(--shadow); cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+  .hist-card:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,53,104,0.06); }
+  .hist-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; font-family: "DM Serif Display", serif; flex-shrink: 0; border: 1.5px solid var(--border); }
+  .hist-info { flex: 1; min-width: 0; }
+  .hist-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .hist-meta { font-size: 12px; color: var(--text-2); }
+  .hist-actions { display: flex; gap: 6px; flex-shrink: 0; align-items: flex-start; }
+  .hist-score { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
+  .empty-state { text-align: center; padding: 48px 24px; color: var(--text-3); }
+  .empty-state .ei { font-size: 36px; margin-bottom: 10px; }
+  .empty-state p { font-size: 13px; line-height: 1.6; }
+
+  /* SEARCH BAR */
+  .search-bar { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 16px; box-shadow: var(--shadow); }
+  .search-bar i { color: var(--text-3); font-size: 15px; flex-shrink: 0; }
+  .search-bar input { flex: 1; border: none; background: transparent; font-size: 13px; color: var(--text); font-family: "DM Sans", sans-serif; outline: none; }
+  .search-bar input::placeholder { color: var(--text-3); }
+
   .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   .action-row { display: flex; gap: 10px; flex-wrap: wrap; }
 
-  /* ── TOAST ── */
   .toast { position: fixed; bottom: 28px; right: 28px; background: var(--accent); color: #fff; padding: 12px 20px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; z-index: 9999; box-shadow: var(--shadow-lg); transform: translateY(60px); opacity: 0; transition: all .25s; pointer-events: none; display: flex; align-items: center; gap: 8px; }
   .toast.show { transform: translateY(0); opacity: 1; }
 
-  /* ── RESPONSIVE ── */
+  .loading-overlay { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.7); z-index: 500; align-items: center; justify-content: center; gap: 10px; font-size: 13px; color: var(--text-2); }
+  .loading-overlay.show { display: flex; }
+  .spinner { width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   @media (max-width: 700px) {
     .sidebar { display: none; }
     .view { padding: 1.5rem 1rem; }
@@ -220,10 +271,32 @@
 </style>
 </head>
 <body>
-<div class="app">
+
+<!-- LOGIN -->
+<div class="login-screen show" id="login-screen">
+  <div class="login-card">
+    <div class="login-logo"><img src="data:image/jpeg;base64,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" alt="Syros Financial" /></div>
+    <div class="login-brand">Syros Financial</div>
+    <div class="login-sub">Diagnóstico Empresarial</div>
+    <div class="login-error" id="login-error"></div>
+    <div class="login-field">
+      <label>Email</label>
+      <input id="login-email" type="email" placeholder="seu@email.com" autocomplete="email" />
+    </div>
+    <div class="login-field">
+      <label>Senha</label>
+      <input id="login-senha" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')fazerLogin()" />
+    </div>
+    <button class="login-btn" id="login-btn" onclick="fazerLogin()">Entrar</button>
+    <div class="login-note">Problemas? Fale com o administrador.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
 
   <!-- SIDEBAR -->
-  <nav class="sidebar" role="navigation" aria-label="Menu principal">
+  <nav class="sidebar">
     <div class="sidebar-logo">
       <div class="sidebar-logo-img"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCABwAHADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4/ooor9IPECiiigAooooAKKKKACiiigAooooAKKKKACiiigAoorc0LwN4i8T2ct3o+hahqlrFJ5Uk1pbtIiPjO0kdDg5xWc6kKUeapJJd3oVGMpu0VdmHRXZJ8F/H8ib08Fa8y+osJCP5VG/wh8cxHD+D9bU+9jIP6Vy/X8J/z+j/AOBL/M2+r1v5H9zORortIfgp8Qbn/VeCdfk/3dPkP9Knn+AvxKtoxJL4B8RxxnozabKB/KhY7CPatH/wJf5idCqt4P7mcJRXXSfCDxzF9/wfra/WxkH9Kh/4Vd4x3Bf+EW1fce32N8/yo+v4T/n9H/wJf5j+r1v5H9zOXorb1/wP4i8K28U+s6HqGlQTNsjkvLdoldsZwCepxzWJXVCpCrHmpyTXlqYyjKDtJWYUUUVoSFFFFABXsH7MXxbj+F/xASDU5P8AimtaC2eoA9Ijn93P9UY8/wCyzV4/R168iuTF4WnjaE8PWV4yVv8Ag/LdG1GrKhUjUhuj7u+OPxJ8ffBrxhottog0Sbw5rZWG0vNSifZFNkBkkdXwByGBx0J9KmuF/aB1CEynTfAxTvsnk4/WuF+EHjDS/jz8HLv4c+LrzyruzVEt758NJFt/1M65IyV5RhnkfWvbJ/B+s6V4Ai8OReM7oXYt0ii8R6eFWZSp+VmTcQcgBWBPPPQ1+CYxUMvUcLOjTVWEuWblBu8d4z06W3W+ztufoFFVMQ3WjOXLJXVmlr1j63+RwNrrXx+0aQKtn4NHPG6aQj/0Kuy03xh+0nf2htk0/wCHksLjGJppf/iq5i4+BfjK4h8z/heWszeqvBGCPr+8ribvwx8QNO8f6V4V0r4v61c3EsD3t9ONiJZWy8Kx+Y5Z3+VV47mqoPDVZNUpULpNv93V2Su+n/DvRaszqxqcvvqpuvtQ3+89K1zQP2jrdBLcaT4EMb9DBcyEfzrz34VeOPGnxD8U63banFoy6Voztbz3emxuVluM4CRuWwQMFicdAPWtnU/CHxL+yyWcnxv8QXFvKpR4cJhgRgjh/SvGPiVoN/8AAvwdY6Vo3xD1OYanJLu0aGBYEEZGJJGIYnnhffn0rtw2GwGZqeDoSpe1nZR5adRW6yd2u221t7kOpi8HavVUuSO/vR17Lf7zlPj38TpviL4v8qK4Muj6UGtrPB+Vzn95L/wIjj2UV5nQBgYHSiv2vB4SlgcPDDUV7sVb/g+r3fmfD1608RVlVnuwooorsMAooooAKKKKAHwCIzx+czrDuG9o13MFzyQD1OM8V9P2Pw8f9m0+HPiXomuv4t8JXjLbatGlt5RFpMBtbAZs88jph1Ud6+Xa+n/2V/Hdt4l8Pax8NNfH2qwuLeVraFzy8Lcyxr7qf3i+nPpXyXEksRSwyr0/epR/iQsveg9G09047qzXd7HsZaqc6rpvSb+F9mtvvK37YHwmi0y7sPH+hsl3oesLGJ7iDlC7LmKX6OuAfcD1r5pr7S+Dmow21p4n+BHjpjd2MSONPuW6yWj/ADK8fupKuvpyP4a+bY/gzrP/AAuBvh/KwW9ju/Jlu0GUEAAb7QP9kxkMPcgVyZFmMMPRqYPET0ormUv5qTV4y+S0fbRbm2Pw0qk41qcfjdmu0uq+89Z/ZX+FkVno2pfEzxAotdJso5Y7GWYYX5AfPnH+6MoPct6V4X8RvGs/xA8YX+tSqYopW2W8B/5ZQjhF+uOT7k19Qfth/FjTvDPw/wDDvwe8LRpbWVpBFJe7OscC/wCpgJ9XP7x/X5f7xr46rTIqUsdWqZ3XWtTSCf2aa2+cnq/vW5njansaccDHaOsvOX/A2CiiivtDxQooooAKKKKACiiigArS8N+Ib7wnr+n6zpk3kahYTrcQP2DKeh9QeQR3BNZtFTKMZxcZK6Y03F3R9mfF/TI/iR8OPD3xk8EL5eoaSvn3FuvLxID+/hbHXy23H3Ut61H8J9Nh+HPwn8SfF7xfJ9p13WgZ0jkPzmNj+5iX0MrYPsoX0rzL9kz4ynwB4om8O6i4k0HWzsMUvKJPjaMg9nHyn32079rf4n2fifxenhjQZj/wj+jkGRE4R7rbhgAO0Y+Qe+6vyaWV15Yv+w1H91fmc+vsr35L/wCP8dbWPsFi4Kj9fv721unPa3N939XPEde1y88S61e6rqMpnvryVpppD3Y+nsOAB6AVQoor9ZjGMIqEVZLRHyDbk23uwoooqiQooooAKKKKACiiigAooooAVWKMrKSrKQQQcEHsaGZnZmYlmYkkk5JPc0lFFuowooooEFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/Z" alt="Syros Financial" /></div>
       <div class="sidebar-logo-text">
@@ -233,48 +306,61 @@
     </div>
     <div class="sidebar-nav">
       <div class="nav-section">Ferramentas</div>
-      <div class="nav-item active" id="nav-diag" onclick="reiniciarNav()">
-        <i class="ti ti-shield-check ni" aria-hidden="true"></i>
-        Diagnóstico de risco
+      <div class="nav-item active" id="nav-novo" onclick="setView('novo')">
+        <i class="ti ti-shield-plus ni"></i>
+        Novo diagnóstico
       </div>
-      <div class="nav-item" onclick="alert('Em breve: integração com o sistema de propostas.')">
-        <i class="ti ti-file-invoice ni" aria-hidden="true"></i>
-        Propostas de saúde
+      <div class="nav-item" id="nav-hist-toggle" onclick="toggleSubmenu()">
+        <i class="ti ti-history ni"></i>
+        <span style="flex:1">Diagnósticos salvos</span>
+        <span class="nav-badge" id="cnt-diag">0</span>
+        <span class="nav-arrow" id="nav-arrow">▶</span>
       </div>
-      <div class="nav-item" onclick="alert('Em breve.')">
-        <i class="ti ti-users ni" aria-hidden="true"></i>
-        Clientes
+      <div class="submenu" id="submenu">
+        <div class="submenu-search">
+          <input type="text" id="submenu-search" placeholder="Buscar cliente..." oninput="filtrarSubmenu(this.value)" />
+        </div>
+        <div id="submenu-lista"></div>
+        <div class="submenu-empty" id="submenu-empty" style="display:none">Nenhum diagnóstico salvo</div>
+      </div>
+      <div class="nav-item" id="nav-hist" onclick="setView('historico')">
+        <i class="ti ti-layout-list ni"></i>
+        Ver todos
       </div>
     </div>
     <div class="sidebar-footer">
-      <strong>Syros Financial</strong><br>
-      Sistema interno · Corretora<br><br>
-      <span style="font-size:10px;">v2.0 · Diagnóstico Empresarial</span>
+      <strong id="corretor-nome">Carregando...</strong>
+      Dados salvos na nuvem · Supabase
+      <div class="sync-row">
+        <div class="sync-dot loading" id="sync-dot"></div>
+        <span id="sync-label">Conectando...</span>
+      </div>
+      <button class="btn-logout" onclick="fazerLogout()">↩ Sair</button>
     </div>
   </nav>
 
   <!-- MAIN -->
-  <main class="main" role="main">
-    <div class="view active" id="view-diag">
+  <main class="main">
+
+    <!-- VIEW: NOVO DIAGNÓSTICO -->
+    <div class="view active" id="view-novo">
       <div class="page-title">Diagnóstico de risco empresarial</div>
       <p class="page-sub">Conduza o mapeamento com o cliente e gere o relatório de exposição e proposta de coberturas.</p>
 
-      <!-- PROGRESS -->
       <div class="progress-wrap" id="progress-wrap">
         <div class="progress-header">
-          <span class="progress-lbl" id="prog-label">Passo 1 de 6</span>
-          <span class="progress-pct" id="prog-pct">16%</span>
+          <span class="progress-lbl" id="prog-label">Passo 1 de 7</span>
+          <span class="progress-pct" id="prog-pct">14%</span>
         </div>
-        <div class="progress-bg"><div class="progress-fill" id="prog-fill" style="width:16%"></div></div>
-        <div class="dots" id="dots" aria-hidden="true"></div>
+        <div class="progress-bg"><div class="progress-fill" id="prog-fill" style="width:14%"></div></div>
+        <div class="dots" id="dots"></div>
       </div>
 
-      <!-- ══ STEP 1 ══ -->
-      <section class="step active" id="s1" aria-label="Passo 1: Identificação">
-        <div class="step-eyebrow">Passo 1 de 6</div>
+      <!-- STEP 1 -->
+      <section class="step active" id="s1">
+        <div class="step-eyebrow">Passo 1 de 7</div>
         <h2 class="step-title">Identificação do negócio</h2>
         <p class="step-desc">Dados iniciais para personalizar o diagnóstico de risco.</p>
-
         <div class="qblock">
           <label class="qlabel" for="q_nome">Nome do cliente / empresa</label>
           <input class="text-input" id="q_nome" type="text" placeholder="Ex: Hamburgueria do João" autocomplete="off" />
@@ -300,229 +386,546 @@
           </div>
         </div>
         <div class="nav-row">
-          <button class="btn btn-primary" onclick="go(2)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          <button class="btn btn-primary" onclick="go(2)">Próximo <i class="ti ti-arrow-right"></i></button>
         </div>
       </section>
 
-      <!-- ══ STEP 2 ══ -->
-      <section class="step" id="s2" aria-label="Passo 2: Estrutura e patrimônio">
-        <div class="step-eyebrow">Passo 2 de 6</div>
+      <!-- STEP 2 -->
+      <section class="step" id="s2">
+        <div class="step-eyebrow">Passo 2 de 7</div>
         <h2 class="step-title">Estrutura e patrimônio</h2>
         <p class="step-desc">O que está fisicamente exposto a risco.</p>
-        <div class="qblock">
-          <label class="qlabel">O imóvel onde funciona o negócio é:</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="imovel" value="proprio_quitado" /><span>Próprio quitado</span></label>
-            <label class="opt"><input type="radio" name="imovel" value="proprio_financiado" /><span>Próprio financiado</span></label>
-            <label class="opt"><input type="radio" name="imovel" value="alugado" /><span>Alugado</span></label>
-            <label class="opt"><input type="radio" name="imovel" value="cedido" /><span>Cedido / comodato</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">Valor estimado do conteúdo e equipamentos</label>
-          <span class="qhint">Máquinas, mobiliário, mercadorias, computadores, equipamentos específicos do negócio</span>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="equip" value="1" /><span>Até R$ 50 mil</span></label>
-            <label class="opt"><input type="radio" name="equip" value="2" /><span>R$ 50 mil – R$ 200 mil</span></label>
-            <label class="opt"><input type="radio" name="equip" value="3" /><span>R$ 200 mil – R$ 500 mil</span></label>
-            <label class="opt"><input type="radio" name="equip" value="4" /><span>Acima de R$ 500 mil</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">O local possui equipamentos eletrônicos sensíveis?</label>
-          <span class="qhint">Computadores, caixas, câmeras, sistemas de refrigeração, equipamentos de cozinha</span>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="eletro" value="nao" /><span>Não / poucos</span></label>
-            <label class="opt"><input type="radio" name="eletro" value="moderado" /><span>Sim, moderado</span></label>
-            <label class="opt"><input type="radio" name="eletro" value="alto" /><span>Sim, alto — dependo muito deles</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">O negócio fica em área de risco de vendaval, alagamento ou granizo?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="vendaval" value="nao" /><span>Não, área tranquila</span></label>
-            <label class="opt"><input type="radio" name="vendaval" value="eventualmente" /><span>Eventualmente sim</span></label>
-            <label class="opt"><input type="radio" name="vendaval" value="sim" /><span>Sim, ocorre com frequência</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">Estoque: o negócio carrega produtos de alto valor ou perecíveis?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="estoque" value="nao" /><span>Não / mínimo</span></label>
-            <label class="opt"><input type="radio" name="estoque" value="moderado" /><span>Sim, moderado</span></label>
-            <label class="opt"><input type="radio" name="estoque" value="alto" /><span>Sim, alto valor ou perecível</span></label>
-          </div>
-        </div>
+        <div class="qblock"><label class="qlabel">O imóvel onde funciona o negócio é:</label><div class="opts">
+          <label class="opt"><input type="radio" name="imovel" value="proprio_quitado" /><span>Próprio quitado</span></label>
+          <label class="opt"><input type="radio" name="imovel" value="proprio_financiado" /><span>Próprio financiado</span></label>
+          <label class="opt"><input type="radio" name="imovel" value="alugado" /><span>Alugado</span></label>
+          <label class="opt"><input type="radio" name="imovel" value="cedido" /><span>Cedido / comodato</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">Valor estimado do conteúdo e equipamentos</label><span class="qhint">Máquinas, mobiliário, mercadorias, computadores, equipamentos específicos</span><div class="opts">
+          <label class="opt"><input type="radio" name="equip" value="1" /><span>Até R$ 50 mil</span></label>
+          <label class="opt"><input type="radio" name="equip" value="2" /><span>R$ 50 mil – R$ 200 mil</span></label>
+          <label class="opt"><input type="radio" name="equip" value="3" /><span>R$ 200 mil – R$ 500 mil</span></label>
+          <label class="opt"><input type="radio" name="equip" value="4" /><span>Acima de R$ 500 mil</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">O local possui equipamentos eletrônicos sensíveis?</label><span class="qhint">Computadores, caixas, câmeras, sistemas de refrigeração, equipamentos de cozinha</span><div class="opts">
+          <label class="opt"><input type="radio" name="eletro" value="nao" /><span>Não / poucos</span></label>
+          <label class="opt"><input type="radio" name="eletro" value="moderado" /><span>Sim, moderado</span></label>
+          <label class="opt"><input type="radio" name="eletro" value="alto" /><span>Sim, alto — dependo muito deles</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">O negócio fica em área de risco de vendaval, alagamento ou granizo?</label><div class="opts">
+          <label class="opt"><input type="radio" name="vendaval" value="nao" /><span>Não, área tranquila</span></label>
+          <label class="opt"><input type="radio" name="vendaval" value="eventualmente" /><span>Eventualmente sim</span></label>
+          <label class="opt"><input type="radio" name="vendaval" value="sim" /><span>Sim, ocorre com frequência</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">Estoque: o negócio carrega produtos de alto valor ou perecíveis?</label><div class="opts">
+          <label class="opt"><input type="radio" name="estoque" value="nao" /><span>Não / mínimo</span></label>
+          <label class="opt"><input type="radio" name="estoque" value="moderado" /><span>Sim, moderado</span></label>
+          <label class="opt"><input type="radio" name="estoque" value="alto" /><span>Sim, alto valor ou perecível</span></label>
+        </div></div>
         <div class="nav-row">
-          <button class="btn" onclick="go(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
-          <button class="btn btn-primary" onclick="go(3)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          <button class="btn" onclick="go(1)"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(3)">Próximo <i class="ti ti-arrow-right"></i></button>
         </div>
       </section>
 
-      <!-- ══ STEP 3 ══ -->
-      <section class="step" id="s3" aria-label="Passo 3: Segurança e roubo">
-        <div class="step-eyebrow">Passo 3 de 6</div>
+      <!-- STEP 3 -->
+      <section class="step" id="s3">
+        <div class="step-eyebrow">Passo 3 de 7</div>
         <h2 class="step-title">Segurança e roubo</h2>
         <p class="step-desc">Exposição a furto, roubo e vulnerabilidades do local.</p>
-        <div class="qblock">
-          <label class="qlabel">O negócio já sofreu tentativa ou ocorrência de roubo / furto?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="roubo_hist" value="nao" /><span>Não</span></label>
-            <label class="opt"><input type="radio" name="roubo_hist" value="tentativa" /><span>Tentativa, sem prejuízo</span></label>
-            <label class="opt"><input type="radio" name="roubo_hist" value="sim" /><span>Sim, com prejuízo</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">O local fica em área de risco para roubo / furto?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="area_risco" value="baixo" /><span>Área segura / baixo risco</span></label>
-            <label class="opt"><input type="radio" name="area_risco" value="medio" /><span>Área de risco moderado</span></label>
-            <label class="opt"><input type="radio" name="area_risco" value="alto" /><span>Área de risco alto</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">O estabelecimento tem sistema de alarme ou câmeras?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="alarme" value="nao" /><span>Não tem nada</span></label>
-            <label class="opt"><input type="radio" name="alarme" value="parcial" /><span>Parcial (câmera ou alarme)</span></label>
-            <label class="opt"><input type="radio" name="alarme" value="sim" /><span>Sim, sistema completo</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">Há movimentação de caixa / dinheiro em espécie no local?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="caixa" value="nao" /><span>Não / quase nada</span></label>
-            <label class="opt"><input type="radio" name="caixa" value="moderado" /><span>Sim, moderado</span></label>
-            <label class="opt"><input type="radio" name="caixa" value="alto" /><span>Sim, volume relevante</span></label>
-          </div>
-        </div>
+        <div class="qblock"><label class="qlabel">O negócio já sofreu tentativa ou ocorrência de roubo / furto?</label><div class="opts">
+          <label class="opt"><input type="radio" name="roubo_hist" value="nao" /><span>Não</span></label>
+          <label class="opt"><input type="radio" name="roubo_hist" value="tentativa" /><span>Tentativa, sem prejuízo</span></label>
+          <label class="opt"><input type="radio" name="roubo_hist" value="sim" /><span>Sim, com prejuízo</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">O local fica em área de risco para roubo / furto?</label><div class="opts">
+          <label class="opt"><input type="radio" name="area_risco" value="baixo" /><span>Área segura / baixo risco</span></label>
+          <label class="opt"><input type="radio" name="area_risco" value="medio" /><span>Área de risco moderado</span></label>
+          <label class="opt"><input type="radio" name="area_risco" value="alto" /><span>Área de risco alto</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">O estabelecimento tem sistema de alarme ou câmeras?</label><div class="opts">
+          <label class="opt"><input type="radio" name="alarme" value="nao" /><span>Não tem nada</span></label>
+          <label class="opt"><input type="radio" name="alarme" value="parcial" /><span>Parcial (câmera ou alarme)</span></label>
+          <label class="opt"><input type="radio" name="alarme" value="sim" /><span>Sim, sistema completo</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">Há movimentação de caixa / dinheiro em espécie no local?</label><div class="opts">
+          <label class="opt"><input type="radio" name="caixa" value="nao" /><span>Não / quase nada</span></label>
+          <label class="opt"><input type="radio" name="caixa" value="moderado" /><span>Sim, moderado</span></label>
+          <label class="opt"><input type="radio" name="caixa" value="alto" /><span>Sim, volume relevante</span></label>
+        </div></div>
         <div class="nav-row">
-          <button class="btn" onclick="go(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
-          <button class="btn btn-primary" onclick="go(4)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          <button class="btn" onclick="go(2)"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(4)">Próximo <i class="ti ti-arrow-right"></i></button>
         </div>
       </section>
 
-      <!-- ══ STEP 4 ══ -->
-      <section class="step" id="s4" aria-label="Passo 4: Responsabilidade e pessoas">
-        <div class="step-eyebrow">Passo 4 de 6</div>
+      <!-- STEP 4 -->
+      <section class="step" id="s4">
+        <div class="step-eyebrow">Passo 4 de 7</div>
         <h2 class="step-title">Responsabilidade e pessoas</h2>
         <p class="step-desc">Exposição a terceiros, funcionários e atividade B2B.</p>
-        <div class="qblock">
-          <label class="qlabel">O negócio atende clientes fisicamente no local?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="fluxo" value="nao" /><span>Não, 100% delivery / remoto</span></label>
-            <label class="opt"><input type="radio" name="fluxo" value="poucos" /><span>Sim, poucos clientes por dia</span></label>
-            <label class="opt"><input type="radio" name="fluxo" value="muitos" /><span>Sim, grande fluxo de pessoas</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">Quantos funcionários trabalham na empresa?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="func" value="0" /><span>Nenhum (só o sócio)</span></label>
-            <label class="opt"><input type="radio" name="func" value="1_5" /><span>1 a 5 funcionários</span></label>
-            <label class="opt"><input type="radio" name="func" value="6_20" /><span>6 a 20 funcionários</span></label>
-            <label class="opt"><input type="radio" name="func" value="21+" /><span>Mais de 20 funcionários</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">A atividade envolve risco físico para os funcionários?</label>
-          <span class="qhint">Fritura, uso de máquinas, trabalho em altura, produtos químicos, carga pesada</span>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="risco_f" value="nao" /><span>Não</span></label>
-            <label class="opt"><input type="radio" name="risco_f" value="moderado" /><span>Risco moderado</span></label>
-            <label class="opt"><input type="radio" name="risco_f" value="alto" /><span>Risco alto</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">A empresa presta serviços ou vende para outras empresas (B2B)?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="b2b" value="nao" /><span>Não, só consumidor final</span></label>
-            <label class="opt"><input type="radio" name="b2b" value="eventual" /><span>Eventualmente</span></label>
-            <label class="opt"><input type="radio" name="b2b" value="sim" /><span>Sim, principalmente B2B</span></label>
-          </div>
-        </div>
+        <div class="qblock"><label class="qlabel">O negócio atende clientes fisicamente no local?</label><div class="opts">
+          <label class="opt"><input type="radio" name="fluxo" value="nao" /><span>Não, 100% delivery / remoto</span></label>
+          <label class="opt"><input type="radio" name="fluxo" value="poucos" /><span>Sim, poucos clientes por dia</span></label>
+          <label class="opt"><input type="radio" name="fluxo" value="muitos" /><span>Sim, grande fluxo de pessoas</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">Quantos funcionários trabalham na empresa?</label><div class="opts">
+          <label class="opt"><input type="radio" name="func" value="0" /><span>Nenhum (só o sócio)</span></label>
+          <label class="opt"><input type="radio" name="func" value="1_5" /><span>1 a 5 funcionários</span></label>
+          <label class="opt"><input type="radio" name="func" value="6_20" /><span>6 a 20 funcionários</span></label>
+          <label class="opt"><input type="radio" name="func" value="21+" /><span>Mais de 20 funcionários</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">A atividade envolve risco físico para os funcionários?</label><span class="qhint">Fritura, uso de máquinas, trabalho em altura, produtos químicos, carga pesada</span><div class="opts">
+          <label class="opt"><input type="radio" name="risco_f" value="nao" /><span>Não</span></label>
+          <label class="opt"><input type="radio" name="risco_f" value="moderado" /><span>Risco moderado</span></label>
+          <label class="opt"><input type="radio" name="risco_f" value="alto" /><span>Risco alto</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">A empresa presta serviços ou vende para outras empresas (B2B)?</label><div class="opts">
+          <label class="opt"><input type="radio" name="b2b" value="nao" /><span>Não, só consumidor final</span></label>
+          <label class="opt"><input type="radio" name="b2b" value="eventual" /><span>Eventualmente</span></label>
+          <label class="opt"><input type="radio" name="b2b" value="sim" /><span>Sim, principalmente B2B</span></label>
+        </div></div>
         <div class="nav-row">
-          <button class="btn" onclick="go(3)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
-          <button class="btn btn-primary" onclick="go(5)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          <button class="btn" onclick="go(3)"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(5)">Próximo <i class="ti ti-arrow-right"></i></button>
         </div>
       </section>
 
-      <!-- ══ STEP 5 ══ -->
-      <section class="step" id="s5" aria-label="Passo 5: Proteção e continuidade">
-        <div class="step-eyebrow">Passo 5 de 6</div>
+      <!-- STEP 5 -->
+      <section class="step" id="s5">
+        <div class="step-eyebrow">Passo 5 de 7</div>
         <h2 class="step-title">Proteção atual e continuidade</h2>
         <p class="step-desc">O que já existe e o que está descoberto hoje.</p>
-        <div class="qblock">
-          <label class="qlabel">O negócio tem algum seguro empresarial ativo?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="seg_atual" value="nao" /><span>Não tem nenhum</span></label>
-            <label class="opt"><input type="radio" name="seg_atual" value="basico" /><span>Tem algo básico apenas</span></label>
-            <label class="opt"><input type="radio" name="seg_atual" value="completo" /><span>Tem e acredita estar bem coberto</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">Se o negócio ficasse fechado 30 dias, conseguiria sobreviver financeiramente?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="cont" value="sim" /><span>Sim, sem problema</span></label>
-            <label class="opt"><input type="radio" name="cont" value="dificuldade" /><span>Teria dificuldade</span></label>
-            <label class="opt"><input type="radio" name="cont" value="nao" /><span>Não, quebraria</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">O sócio principal tem seguro de vida ou invalidez pessoal?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="vida" value="sim" /><span>Sim</span></label>
-            <label class="opt"><input type="radio" name="vida" value="nao" /><span>Não</span></label>
-            <label class="opt"><input type="radio" name="vida" value="nao_sabe" /><span>Não sabe / incerto</span></label>
-          </div>
-        </div>
-        <div class="qblock">
-          <label class="qlabel">A empresa tem veículos (frota) no seu nome?</label>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="frota" value="nao" /><span>Não</span></label>
-            <label class="opt"><input type="radio" name="frota" value="1_3" /><span>1 a 3 veículos</span></label>
-            <label class="opt"><input type="radio" name="frota" value="mais3" /><span>Mais de 3 veículos</span></label>
-          </div>
-        </div>
+        <div class="qblock"><label class="qlabel">O negócio tem algum seguro empresarial ativo?</label><div class="opts">
+          <label class="opt"><input type="radio" name="seg_atual" value="nao" /><span>Não tem nenhum</span></label>
+          <label class="opt"><input type="radio" name="seg_atual" value="basico" /><span>Tem algo básico apenas</span></label>
+          <label class="opt"><input type="radio" name="seg_atual" value="completo" /><span>Tem e acredita estar bem coberto</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">Se o negócio ficasse fechado 30 dias, conseguiria sobreviver financeiramente?</label><div class="opts">
+          <label class="opt"><input type="radio" name="cont" value="sim" /><span>Sim, sem problema</span></label>
+          <label class="opt"><input type="radio" name="cont" value="dificuldade" /><span>Teria dificuldade</span></label>
+          <label class="opt"><input type="radio" name="cont" value="nao" /><span>Não, quebraria</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">O sócio principal tem seguro de vida ou invalidez pessoal?</label><div class="opts">
+          <label class="opt"><input type="radio" name="vida" value="sim" /><span>Sim</span></label>
+          <label class="opt"><input type="radio" name="vida" value="nao" /><span>Não</span></label>
+          <label class="opt"><input type="radio" name="vida" value="nao_sabe" /><span>Não sabe / incerto</span></label>
+        </div></div>
+        <div class="qblock"><label class="qlabel">A empresa tem veículos (frota) no seu nome?</label><div class="opts">
+          <label class="opt"><input type="radio" name="frota" value="nao" /><span>Não</span></label>
+          <label class="opt"><input type="radio" name="frota" value="1_3" /><span>1 a 3 veículos</span></label>
+          <label class="opt"><input type="radio" name="frota" value="mais3" /><span>Mais de 3 veículos</span></label>
+        </div></div>
         <div class="nav-row">
-          <button class="btn" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
-          <button class="btn btn-primary" onclick="go(6)">Próximo <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          <button class="btn" onclick="go(4)"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(6)">Próximo <i class="ti ti-arrow-right"></i></button>
         </div>
       </section>
 
-      <!-- ══ STEP 6: REVISÃO ══ -->
-      <section class="step" id="s6" aria-label="Passo 6: Revisão">
-        <div class="step-eyebrow">Passo 6 de 6</div>
+      <!-- STEP 6: SÓCIO E PATRIMÔNIO PESSOAL -->
+      <section class="step" id="s6">
+        <div class="step-eyebrow">Passo 6 de 7</div>
+        <h2 class="step-title">Patrimônio e proteção pessoal do sócio</h2>
+        <p class="step-desc">Residência, veículos, renda e investimentos do sócio principal.</p>
+
+        <div class="qblock">
+          <label class="qlabel">O sócio tem residência própria?</label>
+          <span class="qhint">Casa ou apartamento em nome do sócio ou cônjuge</span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="res_propria" value="nao" /><span>Não tem imóvel próprio</span></label>
+            <label class="opt"><input type="radio" name="res_propria" value="sim_quitado" /><span>Sim, quitado</span></label>
+            <label class="opt"><input type="radio" name="res_propria" value="sim_financiado" /><span>Sim, financiado</span></label>
+            <label class="opt"><input type="radio" name="res_propria" value="mais_de_um" /><span>Sim, mais de um imóvel</span></label>
+          </div>
+        </div>
+
+        <div class="qblock">
+          <label class="qlabel">A residência tem seguro ativo?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="res_seguro" value="nao" /><span>Não tem seguro</span></label>
+            <label class="opt"><input type="radio" name="res_seguro" value="basico" /><span>Tem seguro básico (incêndio)</span></label>
+            <label class="opt"><input type="radio" name="res_seguro" value="completo" /><span>Tem seguro completo</span></label>
+          </div>
+        </div>
+
+        <div class="qblock">
+          <label class="qlabel">O sócio tem veículos pessoais (fora da empresa)?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="carro_pessoal" value="nao" /><span>Não</span></label>
+            <label class="opt"><input type="radio" name="carro_pessoal" value="1" /><span>Sim, 1 veículo</span></label>
+            <label class="opt"><input type="radio" name="carro_pessoal" value="2_mais" /><span>Sim, 2 ou mais veículos</span></label>
+          </div>
+        </div>
+
+        <div class="qblock">
+          <label class="qlabel">Os veículos pessoais têm seguro ativo?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="carro_seguro" value="nao_tem_carro" /><span>Não se aplica (sem veículo)</span></label>
+            <label class="opt"><input type="radio" name="carro_seguro" value="nao" /><span>Tem veículo, mas sem seguro</span></label>
+            <label class="opt"><input type="radio" name="carro_seguro" value="parcial" /><span>Alguns segurados</span></label>
+            <label class="opt"><input type="radio" name="carro_seguro" value="sim" /><span>Todos segurados</span></label>
+          </div>
+        </div>
+
+        <div class="qblock">
+          <label class="qlabel">O sócio tem seguro de vida ou renda (proteção de renda)?</label>
+          <span class="qhint">Seguro de vida, invalidez por acidente ou doença, perda de renda</span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="vida_renda" value="nao" /><span>Não tem nenhum</span></label>
+            <label class="opt"><input type="radio" name="vida_renda" value="vida_apenas" /><span>Tem seguro de vida apenas</span></label>
+            <label class="opt"><input type="radio" name="vida_renda" value="completo" /><span>Tem vida + invalidez + renda</span></label>
+          </div>
+        </div>
+
+        <div class="qblock">
+          <label class="qlabel">O sócio tem investimentos ou reserva financeira relevante?</label>
+          <span class="qhint">Poupança, renda fixa, ações, fundos, previdência privada</span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="investimentos" value="nao" /><span>Não tem reserva relevante</span></label>
+            <label class="opt"><input type="radio" name="investimentos" value="ate_100k" /><span>Até R$ 100 mil</span></label>
+            <label class="opt"><input type="radio" name="investimentos" value="100k_500k" /><span>R$ 100 mil – R$ 500 mil</span></label>
+            <label class="opt"><input type="radio" name="investimentos" value="acima_500k" /><span>Acima de R$ 500 mil</span></label>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn" onclick="go(5)"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <button class="btn btn-primary" onclick="go(7)">Próximo <i class="ti ti-arrow-right"></i></button>
+        </div>
+      </section>
+
+      <!-- STEP 7: REVISÃO -->
+      <section class="step" id="s7">
+        <div class="step-eyebrow">Passo 7 de 7</div>
         <h2 class="step-title">Revisar e gerar diagnóstico</h2>
         <p class="step-desc">Confira as respostas antes de gerar o relatório completo.</p>
-        <div class="resumo-box" id="resumo" aria-live="polite"></div>
+        <div class="resumo-box" id="resumo"></div>
         <div class="nav-row">
-          <button class="btn" onclick="go(5)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar</button>
-          <button class="btn btn-accent" onclick="gerar()"><i class="ti ti-chart-bar" aria-hidden="true"></i> Gerar diagnóstico</button>
+          <button class="btn" onclick="go(6)"><i class="ti ti-arrow-left"></i> Voltar</button>
+          <button class="btn btn-accent" onclick="gerar()"><i class="ti ti-chart-bar"></i> Gerar e salvar diagnóstico</button>
         </div>
       </section>
 
-      <!-- ══ RESULTADO ══ -->
-      <section class="step" id="s-res" aria-label="Diagnóstico completo">
+      <!-- RESULTADO -->
+      <section class="step" id="s-res">
         <div id="dash"></div>
       </section>
+    </div>
 
-    </div><!-- /view-diag -->
+    <!-- VIEW: HISTÓRICO -->
+    <div class="view" id="view-historico">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;">
+        <div>
+          <div class="page-title">Diagnósticos salvos</div>
+          <p class="page-sub">Histórico de todos os diagnósticos realizados pela equipe.</p>
+        </div>
+        <button class="btn btn-primary" onclick="setView('novo')" style="margin-top:4px;flex-shrink:0;">
+          <i class="ti ti-plus"></i> Novo
+        </button>
+      </div>
+      <div class="search-bar">
+        <i class="ti ti-search"></i>
+        <input type="text" id="hist-search" placeholder="Buscar por cliente, segmento ou corretor..." oninput="filtrarHistorico(this.value)" />
+      </div>
+      <div id="hist-list" class="hist-list">
+        <div class="empty-state"><div class="ei">📋</div><p>Carregando diagnósticos...</p></div>
+      </div>
+    </div>
+
+    <!-- VIEW: DETALHE -->
+    <div class="view" id="view-detalhe">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+        <button class="btn btn-sm" onclick="setView('historico')"><i class="ti ti-arrow-left"></i> Voltar</button>
+        <div style="flex:1">
+          <div class="page-title" id="det-titulo">Diagnóstico</div>
+          <div class="page-sub" style="margin-bottom:0" id="det-sub"></div>
+        </div>
+        <button class="btn btn-sm btn-danger" id="det-excluir" onclick="excluirDiagnostico()"><i class="ti ti-trash"></i> Excluir</button>
+      </div>
+      <div id="det-dash"></div>
+    </div>
+
   </main>
-</div><!-- /app -->
+</div>
+
+<!-- LOADING -->
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <span id="loading-msg">Salvando...</span>
+</div>
 
 <!-- TOAST -->
-<div class="toast" id="toast" role="status" aria-live="polite">
-  <i class="ti ti-check" aria-hidden="true"></i>
-  <span id="toast-msg">Copiado!</span>
+<div class="toast" id="toast">
+  <i class="ti ti-check"></i>
+  <span id="toast-msg">Salvo!</span>
 </div>
 
 <script>
+// ── CONFIG ──
+const SUPA_URL = 'https://cbwupjmzhtjqadrcttfs.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNid3Vwam16aHRqcWFkcmN0dGZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0NzYzMTcsImV4cCI6MjA5NTA1MjMxN30.nuEZd_hhnCr5gegnAz6_XyDFozIRYUs2EYjO3RQ6WWE';
+let authToken = null;
+let currentUser = null;
+let currentCorretor = null;
+let diagnosticos = [];
+let diagAtualId = null;
+let submenuAberto = false;
+
+function supaHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'apikey': SUPA_KEY,
+    'Authorization': 'Bearer ' + (authToken || SUPA_KEY)
+  };
+}
+
+// ── AUTH ──
+async function fazerLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const senha = document.getElementById('login-senha').value;
+  const errEl = document.getElementById('login-error');
+  const btn = document.getElementById('login-btn');
+  errEl.style.display = 'none';
+  btn.textContent = 'Entrando...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(`${SUPA_URL}/auth/v1/token?grant_type=password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+      body: JSON.stringify({ email, password: senha })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error_description || data.message || 'Credenciais inválidas');
+    authToken = data.access_token;
+    currentUser = data.user;
+    const corrRes = await fetch(`${SUPA_URL}/rest/v1/corretores?id=eq.${currentUser.id}&select=*`, { headers: supaHeaders() });
+    const corretores = await corrRes.json();
+    if (!corretores.length) throw new Error('Perfil não encontrado. Fale com o administrador.');
+    currentCorretor = corretores[0];
+    localStorage.setItem('syros_diag_session', JSON.stringify({ token: authToken, user: currentUser, corretor: currentCorretor }));
+    entrarApp();
+  } catch (e) {
+    errEl.textContent = e.message;
+    errEl.style.display = 'block';
+  } finally {
+    btn.textContent = 'Entrar';
+    btn.disabled = false;
+  }
+}
+
+function fazerLogout() {
+  localStorage.removeItem('syros_diag_session');
+  currentUser = null; currentCorretor = null; authToken = null; diagnosticos = [];
+  document.getElementById('app').classList.remove('show');
+  document.getElementById('login-screen').classList.add('show');
+  document.getElementById('login-email').value = '';
+  document.getElementById('login-senha').value = '';
+}
+
+async function verificarSessao() {
+  const sess = JSON.parse(localStorage.getItem('syros_diag_session') || 'null');
+  if (!sess) return false;
+  try {
+    const res = await fetch(`${SUPA_URL}/auth/v1/user`, {
+      headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + sess.token }
+    });
+    if (!res.ok) return false;
+    authToken = sess.token;
+    currentUser = sess.user;
+    currentCorretor = sess.corretor;
+    return true;
+  } catch { return false; }
+}
+
+async function entrarApp() {
+  document.getElementById('login-screen').classList.remove('show');
+  document.getElementById('app').classList.add('show');
+  const nomeEl = document.getElementById('corretor-nome');
+  if (nomeEl && currentCorretor) nomeEl.textContent = '👤 ' + currentCorretor.nome;
+  setSyncStatus('loading', 'Carregando...');
+  await carregarDiagnosticos();
+  setSyncStatus('ok', 'Sincronizado');
+  initDots();
+}
+
+function setSyncStatus(state, label) {
+  const dot = document.getElementById('sync-dot');
+  const lbl = document.getElementById('sync-label');
+  dot.className = 'sync-dot ' + state;
+  lbl.textContent = label;
+}
+
+// ── SUPABASE: DIAGNÓSTICOS ──
+async function carregarDiagnosticos() {
+  try {
+    const res = await fetch(`${SUPA_URL}/rest/v1/diagnosticos_empresariais?select=*&order=created_at.desc`, {
+      headers: supaHeaders()
+    });
+    if (!res.ok) throw new Error('Erro ao carregar');
+    diagnosticos = await res.json();
+    renderSubmenu();
+    renderHistorico();
+  } catch (e) {
+    setSyncStatus('err', 'Erro de conexão');
+    console.warn('Erro ao carregar diagnósticos:', e);
+  }
+}
+
+async function salvarDiagnostico(dados) {
+  showLoading('Salvando diagnóstico...');
+  try {
+    const payload = {
+      corretor_id: currentUser.id,
+      corretor_nome: currentCorretor.nome,
+      cliente: dados.nome,
+      segmento: dados.segLabel,
+      score: dados.score,
+      nivel: dados.nivelLabel,
+      riscos_altos: dados.altoN,
+      riscos_medios: dados.medioN,
+      dados: dados
+    };
+    const res = await fetch(`${SUPA_URL}/rest/v1/diagnosticos_empresariais`, {
+      method: 'POST',
+      headers: { ...supaHeaders(), 'Prefer': 'return=representation' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('Erro ao salvar');
+    const [novo] = await res.json();
+    diagnosticos.unshift(novo);
+    diagAtualId = novo.id;
+    renderSubmenu();
+    renderHistorico();
+    showToast('✓ Diagnóstico salvo com sucesso!');
+  } catch (e) {
+    showToast('⚠ Erro ao salvar: ' + e.message);
+  } finally {
+    hideLoading();
+  }
+}
+
+async function excluirDiagnostico() {
+  if (!diagAtualId) return;
+  if (!confirm('Excluir este diagnóstico? Essa ação não pode ser desfeita.')) return;
+  showLoading('Excluindo...');
+  try {
+    await fetch(`${SUPA_URL}/rest/v1/diagnosticos_empresariais?id=eq.${diagAtualId}`, {
+      method: 'DELETE', headers: supaHeaders()
+    });
+    diagnosticos = diagnosticos.filter(d => d.id !== diagAtualId);
+    diagAtualId = null;
+    renderSubmenu();
+    renderHistorico();
+    setView('historico');
+    showToast('Diagnóstico excluído.');
+  } catch (e) {
+    showToast('Erro ao excluir.');
+  } finally {
+    hideLoading();
+  }
+}
+
+// ── SUBMENU ──
+function toggleSubmenu() {
+  submenuAberto = !submenuAberto;
+  document.getElementById('submenu').classList.toggle('open', submenuAberto);
+  document.getElementById('nav-arrow').classList.toggle('open', submenuAberto);
+}
+
+function filtrarSubmenu(q) {
+  renderSubmenu(q);
+}
+
+function renderSubmenu(q = '') {
+  const lista = document.getElementById('submenu-lista');
+  const empty = document.getElementById('submenu-empty');
+  const cnt = document.getElementById('cnt-diag');
+  cnt.textContent = diagnosticos.length;
+  const filtrados = q ? diagnosticos.filter(d =>
+    (d.cliente||'').toLowerCase().includes(q.toLowerCase()) ||
+    (d.segmento||'').toLowerCase().includes(q.toLowerCase())
+  ) : diagnosticos.slice(0, 20);
+  if (!filtrados.length) {
+    lista.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  const scoreClass = nivel => nivel === 'Exposição alta' ? 'score-alto' : nivel === 'Exposição moderada' ? 'score-medio' : 'score-baixo';
+  lista.innerHTML = filtrados.map(d => `
+    <div class="submenu-item${d.id === diagAtualId ? ' active' : ''}" onclick="abrirDetalhe(${d.id})">
+      <div class="submenu-item-info">
+        <div class="submenu-item-name">${d.cliente || 'Cliente'}</div>
+        <div class="submenu-item-meta">${d.segmento || ''} · ${formatarData(d.created_at)}</div>
+      </div>
+      <span class="submenu-item-score ${scoreClass(d.nivel)}">${d.score}</span>
+    </div>`).join('');
+}
+
+// ── HISTÓRICO ──
+function renderHistorico(q = '') {
+  const lista = document.getElementById('hist-list');
+  const filtrados = q ? diagnosticos.filter(d =>
+    (d.cliente||'').toLowerCase().includes(q.toLowerCase()) ||
+    (d.segmento||'').toLowerCase().includes(q.toLowerCase()) ||
+    (d.corretor_nome||'').toLowerCase().includes(q.toLowerCase())
+  ) : diagnosticos;
+
+  if (!filtrados.length) {
+    lista.innerHTML = `<div class="empty-state"><div class="ei">🔍</div><p>${q ? 'Nenhum resultado para "'+q+'".' : 'Nenhum diagnóstico salvo ainda.<br>Clique em "Novo diagnóstico" para começar.'}</p></div>`;
+    return;
+  }
+  const scoreClass = nivel => nivel === 'Exposição alta' ? 'chip-alto' : nivel === 'Exposição moderada' ? 'chip-medio' : 'chip-baixo';
+  const inits = nome => (nome||'?').trim().split(' ').slice(0,2).map(w=>w[0]?.toUpperCase()||'').join('');
+  lista.innerHTML = filtrados.map(d => `
+    <div class="hist-card" onclick="abrirDetalhe(${d.id})">
+      <div class="hist-avatar">${inits(d.cliente)}</div>
+      <div class="hist-info">
+        <div class="hist-name">${d.cliente || 'Cliente'}</div>
+        <div class="hist-meta">${d.segmento || '—'} · ${d.corretor_nome || ''} · ${formatarData(d.created_at)}</div>
+      </div>
+      <div class="hist-actions">
+        <span class="hist-score ${scoreClass(d.nivel)}">${d.score}/100</span>
+      </div>
+    </div>`).join('');
+}
+
+function filtrarHistorico(q) { renderHistorico(q); }
+
+function abrirDetalhe(id) {
+  const d = diagnosticos.find(x => x.id === id);
+  if (!d) return;
+  diagAtualId = id;
+  renderSubmenu();
+  document.getElementById('det-titulo').textContent = d.cliente || 'Diagnóstico';
+  document.getElementById('det-sub').textContent = d.segmento + ' · ' + d.corretor_nome + ' · ' + formatarData(d.created_at);
+  document.getElementById('det-dash').innerHTML = renderDashHTML(d.dados || d);
+  setView('detalhe');
+}
+
+function formatarData(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+// ── VIEWS ──
+function setView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  const navMap = { novo:'nav-novo', historico:'nav-hist', detalhe:'nav-hist' };
+  if (navMap[v]) document.getElementById(navMap[v])?.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── FORM ──
 let cur = 1;
-const TOTAL = 6;
+const TOTAL = 7;
 
 function initDots() {
   const d = document.getElementById('dots');
+  if (!d) return;
   d.innerHTML = '';
   for (let i = 1; i <= TOTAL; i++) {
     const el = document.createElement('div');
@@ -530,29 +933,28 @@ function initDots() {
     d.appendChild(el);
   }
 }
-initDots();
 
 function go(n) {
   const prevId = cur > TOTAL ? 's-res' : 's' + cur;
-  document.getElementById(prevId).classList.remove('active');
+  document.getElementById(prevId)?.classList.remove('active');
   cur = n;
   const nextId = n > TOTAL ? 's-res' : 's' + n;
-  document.getElementById(nextId).classList.add('active');
-  const pct = Math.min(100, Math.round((n / (TOTAL + 1)) * 100));
+  document.getElementById(nextId)?.classList.add('active');
+  const pct = Math.min(100, Math.round((n / (TOTAL+1)) * 100));
   document.getElementById('prog-fill').style.width = pct + '%';
   document.getElementById('prog-pct').textContent = pct + '%';
   document.getElementById('prog-label').textContent = n > TOTAL ? 'Concluído' : 'Passo ' + n + ' de ' + TOTAL;
   initDots();
   if (n === TOTAL) buildResumo();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function rv(name) {
-  const el = document.querySelector('input[name="' + name + '"]:checked');
+  const el = document.querySelector('input[name="'+name+'"]:checked');
   return el ? el.value : null;
 }
 function rl(name) {
-  const el = document.querySelector('input[name="' + name + '"]:checked');
+  const el = document.querySelector('input[name="'+name+'"]:checked');
   if (!el) return '—';
   return el.closest('label').querySelector('span').textContent;
 }
@@ -560,78 +962,108 @@ function rl(name) {
 function buildResumo() {
   const nome = document.getElementById('q_nome').value || '(não informado)';
   const rows = [
-    ['Cliente', nome], ['Segmento', rl('seg')], ['Faturamento', rl('fat')],
-    ['Imóvel', rl('imovel')], ['Equipamentos', rl('equip')],
-    ['Eletrônicos sensíveis', rl('eletro')], ['Risco vendaval', rl('vendaval')],
-    ['Estoque', rl('estoque')], ['Histórico de roubo', rl('roubo_hist')],
-    ['Área de risco', rl('area_risco')], ['Alarme / câmeras', rl('alarme')],
-    ['Caixa em espécie', rl('caixa')], ['Fluxo de clientes', rl('fluxo')],
-    ['Funcionários', rl('func')], ['Risco físico func.', rl('risco_f')],
-    ['Atende B2B', rl('b2b')], ['Seguro atual', rl('seg_atual')],
-    ['Sobrevive 30 dias parado', rl('cont')], ['Vida do sócio', rl('vida')],
-    ['Frota', rl('frota')],
+    ['Cliente',nome],['Segmento',rl('seg')],['Faturamento',rl('fat')],
+    ['Imóvel',rl('imovel')],['Equipamentos',rl('equip')],
+    ['Eletrônicos',rl('eletro')],['Vendaval',rl('vendaval')],
+    ['Estoque',rl('estoque')],['Histórico roubo',rl('roubo_hist')],
+    ['Área de risco',rl('area_risco')],['Alarme',rl('alarme')],
+    ['Caixa',rl('caixa')],['Fluxo clientes',rl('fluxo')],
+    ['Funcionários',rl('func')],['Risco func.',rl('risco_f')],
+    ['B2B',rl('b2b')],['Seguro atual',rl('seg_atual')],
+    ['Sobrevive 30 dias',rl('cont')],['Vida sócio',rl('vida')],['Frota',rl('frota')],
+    ['Residência própria',rl('res_propria')],['Seguro residência',rl('res_seguro')],
+    ['Veículos pessoais',rl('carro_pessoal')],['Seguro carros pessoais',rl('carro_seguro')],
+    ['Vida / proteção de renda',rl('vida_renda')],['Investimentos',rl('investimentos')]
   ];
-  document.getElementById('resumo').innerHTML = rows.map(([k, v]) =>
-    '<span class="rk">' + k + ':</span> <strong>' + v + '</strong><br/>'
-  ).join('');
+  document.getElementById('resumo').innerHTML = rows.map(([k,v]) =>
+    `<span class="rk">${k}:</span> <strong>${v}</strong><br/>`).join('');
 }
 
-function calcScore() {
+// ── SCORE & RISKS ──
+function calcScore(d) {
   let s = 0;
-  const fat = rv('fat'); if (fat==='3') s+=8; if (fat==='4') s+=15;
-  const equip = rv('equip'); if (equip==='3') s+=10; if (equip==='4') s+=18;
-  const eletro = rv('eletro'); if (eletro==='moderado') s+=6; if (eletro==='alto') s+=12;
-  const vendaval = rv('vendaval'); if (vendaval==='eventualmente') s+=5; if (vendaval==='sim') s+=11;
-  const estoque = rv('estoque'); if (estoque==='moderado') s+=5; if (estoque==='alto') s+=12;
-  const rh = rv('roubo_hist'); if (rh==='tentativa') s+=6; if (rh==='sim') s+=14;
-  const ar = rv('area_risco'); if (ar==='medio') s+=6; if (ar==='alto') s+=13;
-  const al = rv('alarme'); if (al==='nao') s+=8; if (al==='parcial') s+=3;
-  const cx = rv('caixa'); if (cx==='moderado') s+=4; if (cx==='alto') s+=9;
-  const fl = rv('fluxo'); if (fl==='poucos') s+=4; if (fl==='muitos') s+=10;
-  const fn = rv('func'); if (fn==='1_5') s+=5; if (fn==='6_20') s+=10; if (fn==='21+') s+=16;
-  const rf = rv('risco_f'); if (rf==='moderado') s+=7; if (rf==='alto') s+=14;
-  const b2 = rv('b2b'); if (b2==='eventual') s+=4; if (b2==='sim') s+=10;
-  const sa = rv('seg_atual'); if (sa==='nao') s+=18; if (sa==='basico') s+=9;
-  const ct = rv('cont'); if (ct==='dificuldade') s+=10; if (ct==='nao') s+=18;
-  const vi = rv('vida'); if (vi==='nao') s+=8; if (vi==='nao_sabe') s+=5;
-  const fr = rv('frota'); if (fr==='1_3') s+=5; if (fr==='mais3') s+=10;
+  const fat=d.fat,equip=d.equip,eletro=d.eletro,vendaval=d.vendaval,estoque=d.estoque;
+  const rh=d.roubo_hist,ar=d.area_risco,al=d.alarme,cx=d.caixa;
+  const fl=d.fluxo,fn=d.func,rf=d.risco_f,b2=d.b2b;
+  const sa=d.seg_atual,ct=d.cont,vi=d.vida,fr=d.frota;
+  if(fat==='3')s+=8;if(fat==='4')s+=15;
+  if(equip==='3')s+=10;if(equip==='4')s+=18;
+  if(eletro==='moderado')s+=6;if(eletro==='alto')s+=12;
+  if(vendaval==='eventualmente')s+=5;if(vendaval==='sim')s+=11;
+  if(estoque==='moderado')s+=5;if(estoque==='alto')s+=12;
+  if(rh==='tentativa')s+=6;if(rh==='sim')s+=14;
+  if(ar==='medio')s+=6;if(ar==='alto')s+=13;
+  if(al==='nao')s+=8;if(al==='parcial')s+=3;
+  if(cx==='moderado')s+=4;if(cx==='alto')s+=9;
+  if(fl==='poucos')s+=4;if(fl==='muitos')s+=10;
+  if(fn==='1_5')s+=5;if(fn==='6_20')s+=10;if(fn==='21+')s+=16;
+  if(rf==='moderado')s+=7;if(rf==='alto')s+=14;
+  if(b2==='eventual')s+=4;if(b2==='sim')s+=10;
+  if(sa==='nao')s+=18;if(sa==='basico')s+=9;
+  if(ct==='dificuldade')s+=10;if(ct==='nao')s+=18;
+  if(vi==='nao')s+=8;if(vi==='nao_sabe')s+=5;
+  if(fr==='1_3')s+=5;if(fr==='mais3')s+=10;
+  const rp=d.res_propria,rs=d.res_seguro,cp=d.carro_pessoal,cs=d.carro_seguro,vr=d.vida_renda,inv=d.investimentos;
+  if(rp==='sim_quitado'||rp==='sim_financiado'||rp==='mais_de_um') {
+    if(rs==='nao') s+=16; else if(rs==='basico') s+=7;
+  }
+  if(cp==='1'&&cs==='nao') s+=10; if(cp==='2_mais'&&cs!=='sim') s+=14;
+  if(vr==='nao') s+=12; else if(vr==='vida_apenas') s+=5;
+  if(inv==='100k_500k'||inv==='acima_500k') { if(vr==='nao') s+=8; }
   return Math.min(100, s);
 }
 
-function buildRisks() {
-  const r = [];
-  const sa=rv('seg_atual'), eq=rv('equip'), el=rv('eletro'), vd=rv('vendaval'), es=rv('estoque');
-  const rh=rv('roubo_hist'), ar=rv('area_risco'), al=rv('alarme'), cx=rv('caixa');
-  const fl=rv('fluxo'), fn=rv('func'), rf=rv('risco_f'), b2=rv('b2b');
-  const ct=rv('cont'), vi=rv('vida'), fr=rv('frota');
-
-  if (sa==='nao') r.push({i:'ti-flame',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Incêndio e danos à estrutura',d:'O negócio não tem cobertura de incêndio. Uma única ocorrência pode representar perda total sem nenhuma indenização.'});
-  else if (sa==='basico') r.push({i:'ti-flame',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Cobertura de incêndio possivelmente insuficiente',d:'O seguro atual pode não cobrir o valor real do imóvel, conteúdo e todos os riscos físicos. Vale revisar os limites.'});
-  if (el==='alto'&&sa!=='completo') r.push({i:'ti-bolt',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Danos elétricos descobertos',d:'Alta dependência de equipamentos eletrônicos sem cobertura. Surto ou curto podem gerar prejuízo imediato.'});
-  else if (el==='moderado'&&sa==='nao') r.push({i:'ti-bolt',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de danos elétricos',d:'Equipamentos eletrônicos expostos a surtos e variações de tensão sem proteção via seguro.'});
-  if (vd==='sim') r.push({i:'ti-wind',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Vendaval e fenômenos naturais',d:'O local está em área de risco frequente. Danos por vendaval, granizo e alagamento precisam de cobertura específica.'});
-  else if (vd==='eventualmente') r.push({i:'ti-wind',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Exposição a vendaval e alagamento',d:'Mesmo esporádica, a ocorrência pode causar danos sérios. Cobertura de fenômenos naturais é recomendada.'});
-  if (rh==='sim'||ar==='alto') r.push({i:'ti-shield-off',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Alto risco de roubo e furto',d:'Histórico de sinistro ou área de risco elevado. Sem cobertura, prejuízo recai 100% sobre o negócio.'});
-  else if (ar==='medio'||cx==='alto'||al==='nao') r.push({i:'ti-shield-off',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Vulnerabilidade a roubo e furto',d:'Área de risco moderado, volume de caixa ou ausência de alarme aumentam a exposição.'});
-  if (ct==='nao') r.push({i:'ti-calendar-off',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Interrupção do negócio — risco crítico',d:'O negócio quebraria em 30 dias parado. Sem lucros cessantes, um sinistro pode encerrar a empresa.'});
-  else if (ct==='dificuldade') r.push({i:'ti-calendar-off',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de interrupção do negócio',d:'Paralisação forçada geraria dificuldade financeira séria. Lucros cessantes garante receita durante a recuperação.'});
-  if (fl==='muitos'&&sa!=='completo') r.push({i:'ti-users',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Responsabilidade civil com terceiros',d:'Grande fluxo de clientes sem RC adequada expõe o negócio a processos por acidentes no estabelecimento.'});
-  else if (fl==='poucos') r.push({i:'ti-users',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Responsabilidade civil — risco presente',d:'Mesmo com fluxo baixo, qualquer acidente com cliente pode gerar processo judicial.'});
-  if ((fn==='6_20'||fn==='21+')&&(rf==='moderado'||rf==='alto')) r.push({i:'ti-heartbeat',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Acidentes com funcionários',d:'Equipe relevante em atividade de risco. Acidente sem cobertura gera passivo trabalhista elevado.'});
-  else if (fn==='1_5'&&rf!=='nao') r.push({i:'ti-heartbeat',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de acidente laboral',d:'Mesmo equipe pequena em atividade de risco precisa de cobertura de acidentes pessoais coletivos.'});
-  if (es==='alto') r.push({i:'ti-box',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Estoque de alto valor / perecível',d:'Produtos perecíveis ou de alto valor exigem cobertura específica contra falha de energia, roubo e danos.'});
-  if (vi==='nao') r.push({i:'ti-user-shield',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Sócio principal sem proteção',d:'Ausência ou invalidez do sócio-chave pode comprometer toda a operação do negócio.'});
-  if (b2==='sim') r.push({i:'ti-file-invoice',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Responsabilidade civil profissional',d:'Prestação de serviços B2B expõe a empresa a reclamações por erros, omissões e danos ao contratante.'});
-  if (fr==='mais3') r.push({i:'ti-car',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Frota empresarial — múltiplos veículos',d:'Frota com mais de 3 veículos requer gestão de apólice com RC e cobertura de danos próprios.'});
-  else if (fr==='1_3') r.push({i:'ti-car',ib:'#DCFCE7',ic:'#16A34A',n:'baixo',t:'Frota empresarial',d:'Veículos em nome da empresa precisam de cobertura adequada separada do seguro auto pessoal.'});
-  if (r.length===0) r.push({i:'ti-shield-check',ib:'#DCFCE7',ic:'#16A34A',n:'baixo',t:'Perfil de baixo risco identificado',d:'Com base nas respostas, a exposição atual é relativamente baixa. Um seguro empresarial básico ainda é recomendado.'});
+function buildRisks(d) {
+  const r=[];
+  const sa=d.seg_atual,el=d.eletro,vd=d.vendaval,es=d.estoque;
+  const rh=d.roubo_hist,ar=d.area_risco,al=d.alarme,cx=d.caixa;
+  const fl=d.fluxo,fn=d.func,rf=d.risco_f,b2=d.b2b;
+  const ct=d.cont,vi=d.vida,fr=d.frota;
+  if(sa==='nao')r.push({i:'ti-flame',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Incêndio e danos à estrutura',d:'O negócio não tem cobertura de incêndio. Uma única ocorrência pode representar perda total.'});
+  else if(sa==='basico')r.push({i:'ti-flame',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Cobertura de incêndio possivelmente insuficiente',d:'O seguro atual pode não cobrir o valor real do imóvel e conteúdo. Vale revisar os limites.'});
+  if(el==='alto'&&sa!=='completo')r.push({i:'ti-bolt',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Danos elétricos descobertos',d:'Alta dependência de equipamentos eletrônicos sem cobertura. Surto ou curto podem gerar prejuízo imediato.'});
+  else if(el==='moderado'&&sa==='nao')r.push({i:'ti-bolt',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de danos elétricos',d:'Equipamentos eletrônicos expostos a surtos sem proteção via seguro.'});
+  if(vd==='sim')r.push({i:'ti-wind',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Vendaval e fenômenos naturais',d:'O local está em área de risco frequente. Danos por vendaval e alagamento precisam de cobertura específica.'});
+  else if(vd==='eventualmente')r.push({i:'ti-wind',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Exposição a vendaval e alagamento',d:'Mesmo esporádica, a ocorrência pode causar danos sérios.'});
+  if(rh==='sim'||ar==='alto')r.push({i:'ti-shield-off',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Alto risco de roubo e furto',d:'Histórico de sinistro ou área de risco elevado. Sem cobertura, todo o prejuízo recai sobre o negócio.'});
+  else if(ar==='medio'||cx==='alto'||al==='nao')r.push({i:'ti-shield-off',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Vulnerabilidade a roubo e furto',d:'Área de risco moderado, volume de caixa ou ausência de alarme aumentam a exposição.'});
+  if(ct==='nao')r.push({i:'ti-calendar-off',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Interrupção do negócio — risco crítico',d:'O negócio quebraria em 30 dias parado. Sem lucros cessantes, um sinistro pode encerrar a empresa.'});
+  else if(ct==='dificuldade')r.push({i:'ti-calendar-off',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de interrupção do negócio',d:'Paralisação forçada geraria dificuldade financeira séria.'});
+  if(fl==='muitos'&&sa!=='completo')r.push({i:'ti-users',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Responsabilidade civil com terceiros',d:'Grande fluxo de clientes sem RC adequada expõe o negócio a processos por acidentes.'});
+  else if(fl==='poucos')r.push({i:'ti-users',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Responsabilidade civil — risco presente',d:'Mesmo com fluxo baixo, qualquer acidente com cliente pode gerar processo judicial.'});
+  if((fn==='6_20'||fn==='21+')&&(rf==='moderado'||rf==='alto'))r.push({i:'ti-heartbeat',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Acidentes com funcionários',d:'Equipe relevante em atividade de risco. Acidente sem cobertura gera passivo trabalhista elevado.'});
+  else if(fn==='1_5'&&rf!=='nao')r.push({i:'ti-heartbeat',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Risco de acidente laboral',d:'Equipe pequena em atividade de risco precisa de cobertura de acidentes pessoais coletivos.'});
+  if(es==='alto')r.push({i:'ti-box',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Estoque de alto valor / perecível',d:'Produtos perecíveis ou de alto valor exigem cobertura específica.'});
+  if(vi==='nao')r.push({i:'ti-user-shield',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Sócio principal sem proteção',d:'Ausência ou invalidez do sócio-chave pode comprometer toda a operação.'});
+  if(b2==='sim')r.push({i:'ti-file-invoice',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Responsabilidade civil profissional',d:'Prestação de serviços B2B expõe a empresa a reclamações por erros e danos ao contratante.'});
+  if(fr==='mais3')r.push({i:'ti-car',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Frota empresarial — múltiplos veículos',d:'Frota com mais de 3 veículos requer gestão de apólice com RC e cobertura de danos próprios.'});
+  else if(fr==='1_3')r.push({i:'ti-car',ib:'#DCFCE7',ic:'#16A34A',n:'baixo',t:'Frota empresarial',d:'Veículos em nome da empresa precisam de cobertura separada do seguro auto pessoal.'});
+  // Residência
+  const rp=d.res_propria,rs=d.res_seguro,cp=d.carro_pessoal,cs=d.carro_seguro,vr=d.vida_renda,inv=d.investimentos;
+  if((rp==='sim_quitado'||rp==='sim_financiado'||rp==='mais_de_um')&&rs==='nao')
+    r.push({i:'ti-home-off',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Residência do sócio sem seguro',d:'Imóvel próprio sem cobertura expõe o patrimônio pessoal do sócio a perdas irreversíveis por incêndio, roubo ou danos.'});
+  else if((rp==='sim_quitado'||rp==='mais_de_um')&&rs==='basico')
+    r.push({i:'ti-home',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Seguro residencial incompleto',d:'A cobertura básica pode não proteger conteúdo, responsabilidade civil e outros riscos do imóvel. Vale ampliar.'});
+  // Carro pessoal
+  if(cp!=='nao'&&cs==='nao')
+    r.push({i:'ti-car-crash',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Veículo pessoal do sócio sem seguro',d:'Veículo particular descoberto gera exposição total a prejuízos com colisão, roubo e danos a terceiros.'});
+  else if(cp==='2_mais'&&cs==='parcial')
+    r.push({i:'ti-car-crash',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Parte da frota pessoal descoberta',d:'Com mais de um veículo, deixar algum sem seguro é um risco desnecessário. Recomenda-se cobertura em todos.'});
+  // Vida e renda
+  if(vr==='nao')
+    r.push({i:'ti-activity-heartbeat',ib:'#FDECEA',ic:'#C0392B',n:'alto',t:'Sócio sem proteção de vida ou renda',d:'Sem seguro de vida ou invalidez, uma doença ou acidente pode deixar a família e o negócio sem suporte financeiro.'});
+  else if(vr==='vida_apenas')
+    r.push({i:'ti-activity-heartbeat',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Proteção de renda incompleta',d:'O seguro de vida cobre morte, mas invalidez e perda de renda por doença ficam descobertos. Recomenda-se ampliar.'});
+  // Investimentos
+  if((inv==='100k_500k'||inv==='acima_500k')&&vr==='nao')
+    r.push({i:'ti-chart-line',ib:'#FEF3C7',ic:'#D97706',n:'medio',t:'Patrimônio investido sem proteção de renda',d:'Com reservas relevantes, a ausência de seguro de vida/invalidez pode forçar o resgate antecipado dos investimentos em caso de sinistro.'});
+  if(r.length===0)r.push({i:'ti-shield-check',ib:'#DCFCE7',ic:'#16A34A',n:'baixo',t:'Perfil de baixo risco identificado',d:'Com base nas respostas, a exposição atual é relativamente baixa.'});
   return r.sort((a,b)=>({'alto':0,'medio':1,'baixo':2}[a.n]-{'alto':0,'medio':1,'baixo':2}[b.n]));
 }
 
-function buildCoberturas(score) {
-  const sa=rv('seg_atual'),el=rv('eletro'),vd=rv('vendaval');
-  const ar=rv('area_risco'),cx=rv('caixa'),rh=rv('roubo_hist');
-  const ct=rv('cont'),fl=rv('fluxo'),fn=rv('func'),b2=rv('b2b');
+function buildCoberturas(d) {
+  const sa=d.seg_atual,el=d.eletro,vd=d.vendaval,ar=d.area_risco,rh=d.roubo_hist;
+  const ct=d.cont,fl=d.fluxo,fn=d.func,b2=d.b2b;
   return [
     {l:'Incêndio / Estrutura',p:sa==='nao'?95:sa==='basico'?70:45,c:'#C0392B'},
     {l:'Responsabilidade Civil',p:fl==='muitos'?90:fl==='poucos'?65:40,c:'#D97706'},
@@ -641,61 +1073,70 @@ function buildCoberturas(score) {
     {l:'Roubo e Furto Qualificado',p:rh==='sim'?95:ar==='alto'?85:ar==='medio'?60:35,c:'#9f3fbf'},
     {l:'Vida em Grupo / Acidentes',p:(fn==='6_20'||fn==='21+')?80:fn==='1_5'?50:20,c:'#0D9488'},
     {l:'RC Profissional',p:b2==='sim'?80:b2==='eventual'?45:15,c:'#B45309'},
+    {l:'Seguro Residencial',p:(d.res_propria!=='nao'&&d.res_seguro==='nao')?95:(d.res_seguro==='basico')?55:20,c:'#7C3AED'},
+    {l:'Auto Pessoal do Sócio',p:(d.carro_pessoal!=='nao'&&d.carro_seguro==='nao')?90:(d.carro_seguro==='parcial')?55:20,c:'#0891B2'},
+    {l:'Vida / Proteção de Renda',p:(d.vida_renda==='nao')?90:(d.vida_renda==='vida_apenas')?50:15,c:'#BE185D'},
   ].sort((a,b)=>b.p-a.p);
 }
 
-function buildPropostaCoberturas() {
-  const sa=rv('seg_atual'),el=rv('eletro'),vd=rv('vendaval'),fl=rv('fluxo'),fn=rv('func'),b2=rv('b2b'),ct=rv('cont');
+function buildPropostaCovs(d) {
+  const sa=d.seg_atual,el=d.eletro,vd=d.vendaval,fl=d.fluxo,fn=d.func,b2=d.b2b;
+  const fnLabel = fn==='1_5'?'1 a 5 func.':fn==='6_20'?'6 a 20 func.':fn==='21+'?'mais de 20 func.':'nenhum funcionário';
   const cards=[];
-  cards.push({icon:'ti-flame',ib:'#FDECEA',ic:'#C0392B',title:'Incêndio, raio e explosão',badge:'Urgente',bc:'badge-urg',priority:true,desc:'Cobertura da estrutura e conteúdo contra incêndio, queda de raio e explosão. Garante indenização para reconstrução e reposição sem comprometer o caixa.',arg:'"Um incêndio em cozinha industrial é a ocorrência mais comum em restaurantes. Fritadeiras, gás e óleo — o risco está presente todo dia. Sem esse seguro, um único sinistro pode encerrar o negócio."'});
-  cards.push({icon:'ti-calendar-off',ib:'#FDECEA',ic:'#C0392B',title:'Lucros cessantes',badge:'Urgente',bc:'badge-urg',priority:true,desc:'Garante receita mensal durante o período de paralisação por sinistro. Cobre aluguel, folha e custos fixos enquanto o estabelecimento se recupera.',arg:'"Se o senhor ficasse fechado 30 dias, como ficaria o aluguel, os funcionários, as contas? Esse seguro paga exatamente isso — é o salário do negócio enquanto ele se recupera."'});
-  if (el!=='nao') cards.push({icon:'ti-bolt',ib:'#FEF3C7',ic:'#D97706',title:'Danos elétricos',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre prejuízos em equipamentos eletrônicos causados por surto, variação de tensão e descarga elétrica. Essencial para negócios com refrigeração e sistemas eletrônicos.',arg:'"Uma câmara fria queimada num sábado à noite — perde o equipamento e todo o estoque. Essa cobertura custa pouco e evita um prejuízo de dezenas de milhares."'});
-  cards.push({icon:'ti-shield-off',ib:'#FEF3C7',ic:'#D97706',title:'Roubo e furto qualificado',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Protege mercadorias, equipamentos e dinheiro em caixa contra roubo com violência ou furto com arrombamento.',arg:'"Restaurante tem caixa, estoque perecível e equipamentos valiosos — é dos estabelecimentos mais visados. Se acontecer, o prejuízo é duplo: o roubo e a paralisação."'});
-  if (fl!=='nao') cards.push({icon:'ti-users',ib:'#FEF3C7',ic:'#D97706',title:'Responsabilidade civil — estabelecimento',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre indenizações por danos a clientes no estabelecimento. Acidentes, quedas, intoxicação alimentar — protege contra processos judiciais.',arg:'"Um cliente escorrega no banheiro e processa. Um prato causa intoxicação. A RC paga advogado e indenização — sem isso, sai do próprio bolso."'});
-  if (vd!=='nao') cards.push({icon:'ti-wind',ib:'#FEF3C7',ic:'#D97706',title:'Vendaval, granizo e fenômenos naturais',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre danos por vendaval, granizo e alagamento. Especialmente relevante no Sul do Brasil.',arg:'"No Sul, vendaval e granizo acontecem todo ano. Um evento destrói telhado, equipamentos e estoque numa tarde. Essa cobertura praticamente se paga no primeiro inverno."'});
-  if (fn!=='0') cards.push({icon:'ti-heartbeat',ib:'#E8EAF3',ic:'#2A3568',title:'Acidentes pessoais coletivos',badge:'Opcional',bc:'badge-opc',priority:false,desc:'Seguro de acidentes para funcionários — cobre morte e invalidez acidental. Reduz passivo trabalhista.',arg:'"Cozinha é ambiente de risco. Com equipe de '+rl('func')+', o custo de um acidente sem cobertura pode superar um ano inteiro de prêmio."'});
+  cards.push({icon:'ti-flame',ib:'#FDECEA',ic:'#C0392B',title:'Incêndio, raio e explosão',badge:'Urgente',bc:'badge-urg',priority:true,desc:'Cobertura da estrutura e conteúdo contra incêndio, raio e explosão.',arg:'"Um incêndio em cozinha industrial é a ocorrência mais comum em restaurantes. Sem esse seguro, um único sinistro pode encerrar o negócio."'});
+  cards.push({icon:'ti-calendar-off',ib:'#FDECEA',ic:'#C0392B',title:'Lucros cessantes',badge:'Urgente',bc:'badge-urg',priority:true,desc:'Garante receita mensal durante paralisação por sinistro. Cobre aluguel, folha e custos fixos.',arg:'"Se o senhor ficasse fechado 30 dias, como ficaria o aluguel, os funcionários, as contas? Esse seguro paga exatamente isso."'});
+  if(el!=='nao')cards.push({icon:'ti-bolt',ib:'#FEF3C7',ic:'#D97706',title:'Danos elétricos',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre equipamentos eletrônicos por surto, variação de tensão e descarga elétrica.',arg:'"Uma câmara fria queimada num sábado — perde o equipamento e todo o estoque. Custa pouco e evita um prejuízo de dezenas de milhares."'});
+  cards.push({icon:'ti-shield-off',ib:'#FEF3C7',ic:'#D97706',title:'Roubo e furto qualificado',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Protege mercadorias, equipamentos e caixa contra roubo ou furto com arrombamento.',arg:'"Restaurante tem caixa, estoque perecível e equipamentos valiosos. Se acontecer, o prejuízo é duplo: o roubo e a paralisação."'});
+  if(fl!=='nao')cards.push({icon:'ti-users',ib:'#FEF3C7',ic:'#D97706',title:'Responsabilidade civil',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre indenizações por danos a clientes no estabelecimento.',arg:'"Um cliente escorrega e processa. Um prato causa intoxicação. A RC paga advogado e indenização — sem isso, sai do próprio bolso."'});
+  if(vd!=='nao')cards.push({icon:'ti-wind',ib:'#FEF3C7',ic:'#D97706',title:'Vendaval, granizo e fenômenos naturais',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'Cobre danos por vendaval, granizo e alagamento. Especialmente relevante no Sul do Brasil.',arg:'"No Sul, vendaval e granizo acontecem todo ano. Um evento destrói telhado, equipamentos e estoque numa tarde."'});
+  if(fn!=='0')cards.push({icon:'ti-heartbeat',ib:'#E8EAF3',ic:'#2A3568',title:'Acidentes pessoais coletivos',badge:'Opcional',bc:'badge-opc',priority:false,desc:'Seguro de acidentes para funcionários — cobre morte e invalidez acidental.',arg:`"Cozinha é ambiente de risco. Com ${fnLabel}, o custo de um acidente sem cobertura pode superar um ano de prêmio."`});
+  // Pessoais do sócio
+  if(d.res_propria!=='nao'&&d.res_seguro==='nao')
+    cards.push({icon:'ti-home-off',ib:'#FDECEA',ic:'#C0392B',title:'Seguro residencial — urgente',badge:'Urgente',bc:'badge-urg',priority:true,desc:'A residência do sócio está completamente exposta. Incêndio, roubo ou dano elétrico podem destruir o patrimônio pessoal.',arg:'"A empresa tem seguro, mas a casa não? Se acontecer algo na residência, é o patrimônio pessoal do senhor que vai embora."'});
+  else if(d.res_propria!=='nao'&&d.res_seguro==='basico')
+    cards.push({icon:'ti-home',ib:'#FEF3C7',ic:'#D97706',title:'Ampliar seguro residencial',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'O seguro básico cobre incêndio, mas conteúdo, responsabilidade civil e danos elétricos costumam ficar de fora.',arg:'"O seguro da casa está básico. Por uma diferença pequena de prêmio, dá pra incluir conteúdo, danos elétricos e RC familiar."'});
+  if(d.carro_pessoal!=='nao'&&d.carro_seguro==='nao')
+    cards.push({icon:'ti-car-crash',ib:'#FDECEA',ic:'#C0392B',title:'Seguro auto pessoal do sócio',badge:'Urgente',bc:'badge-urg',priority:true,desc:'Veículo particular sem seguro gera exposição total: colisão, roubo e danos a terceiros saem do bolso.',arg:'"Um acidente sem seguro, dependendo do dano causado ao outro, pode custar mais que o carro vale. O risco não compensa."'});
+  if(d.vida_renda==='nao')
+    cards.push({icon:'ti-activity-heartbeat',ib:'#FDECEA',ic:'#C0392B',title:'Seguro de vida e proteção de renda',badge:'Urgente',bc:'badge-urg',priority:true,desc:'Sem cobertura de vida ou invalidez, uma doença ou acidente grave paralisa o sócio e o negócio ao mesmo tempo.',arg:'"Se o senhor ficasse 6 meses afastado por doença, quem sustenta a família e paga as contas da empresa? O seguro de vida resolve exatamente isso."'});
+  else if(d.vida_renda==='vida_apenas')
+    cards.push({icon:'ti-activity-heartbeat',ib:'#FEF3C7',ic:'#D97706',title:'Ampliar para invalidez e renda',badge:'Recomendado',bc:'badge-rec',priority:false,desc:'O seguro de vida cobre morte, mas invalidez permanente ou temporária por doença não estão cobertos.',arg:'"Morrer é o menor dos riscos. Ficar inválido ou doente por meses sem renda é muito mais comum — e mais caro para a família."'});
   return cards;
 }
 
-const OBJECOES=[
-  {q:'"Nunca aconteceu nada, não preciso."',r:'Exatamente por isso é o melhor momento — enquanto está tudo bem, o seguro está disponível e o preço é o melhor. Quando acontece, já é tarde.'},
-  {q:'"Tá caro, vou pensar."',r:'Entendo. Quanto custaria substituir seus equipamentos e pagar 2 meses de aluguel parado? O seguro custa uma fração disso por mês.'},
-  {q:'"O prédio é alugado, não é meu problema."',r:'O prédio pode ser do locador, mas o conteúdo — equipamentos, estoque, instalações — é 100% seu. E o contrato de aluguel provavelmente exige seguro.'},
-  {q:'"Seguro não paga na hora que precisa."',r:'Essa preocupação é legítima com seguros mal contratados. Por isso trabalho com seguradora sólida e garanto que as coberturas estão corretas na apólice. Meu trabalho é acompanhar do início ao fim.'},
-];
+// ── RENDER DASHBOARD ──
+function renderDashHTML(d) {
+  const score = d.score || calcScore(d);
+  const nome = d.nome || d.cliente || 'Cliente';
+  const segLabel = d.segLabel || d.segmento || '—';
+  const risks = buildRisks(d);
+  const coberturas = buildCoberturas(d);
+  const propostaCovs = buildPropostaCovs(d);
+  const altoN = d.riscos_altos ?? risks.filter(r=>r.n==='alto').length;
+  const medioN = d.riscos_medios ?? risks.filter(r=>r.n==='medio').length;
+  const nivelLabel = d.nivelLabel || d.nivel || (score>=65?'Exposição alta':score>=35?'Exposição moderada':'Exposição baixa');
+  const nivelColor = score>=65?'#C0392B':score>=35?'#D97706':'#16A34A';
+  const chipClass = score>=65?'chip-alto':score>=35?'chip-medio':'chip-baixo';
+  const inits = nome.trim().split(' ').slice(0,2).map(w=>w[0]?.toUpperCase()||'').join('');
 
-function gerar() {
-  const score=calcScore();
-  const nome=document.getElementById('q_nome').value||'Cliente';
-  const segLabel=rl('seg');
-  const risks=buildRisks();
-  const coberturas=buildCoberturas(score);
-  const propostaCovs=buildPropostaCoberturas();
-  const altoN=risks.filter(r=>r.n==='alto').length;
-  const medioN=risks.filter(r=>r.n==='medio').length;
-  const nivelLabel=score>=65?'Exposição alta':score>=35?'Exposição moderada':'Exposição baixa';
-  const nivelColor=score>=65?'#C0392B':score>=35?'#D97706':'#16A34A';
-  const chipClass=score>=65?'chip-alto':score>=35?'chip-medio':'chip-baixo';
-  const inits=nome.trim().split(' ').slice(0,2).map(w=>w[0]?.toUpperCase()||'').join('');
-
-  const riskCards=risks.map(r=>`
+  const riskCards = risks.map(r=>`
     <div class="rcard">
-      <div class="ricon" style="background:${r.ib}"><i class="ti ${r.i}" style="color:${r.ic};font-size:16px" aria-hidden="true"></i></div>
+      <div class="ricon" style="background:${r.ib}"><i class="ti ${r.i}" style="color:${r.ic};font-size:16px"></i></div>
       <div style="flex:1"><div class="rtitle">${r.t}</div><div class="rdesc">${r.d}</div></div>
       <span class="rbadge b${r.n[0]}">${r.n==='alto'?'Alto':r.n==='medio'?'Médio':'Baixo'}</span>
     </div>`).join('');
 
-  const covBars=coberturas.map(c=>`
+  const covBars = coberturas.map(c=>`
     <div class="cov-row">
       <span class="cov-lbl">${c.l}</span>
       <div class="cov-bg"><div class="cov-bar" style="width:${c.p}%;background:${c.c}"></div></div>
       <span class="cov-pct">${c.p}%</span>
     </div>`).join('');
 
-  const propostaCards=propostaCovs.map(c=>`
+  const propCards = propostaCovs.map(c=>`
     <div class="cov-card${c.priority?' priority':''}">
       <div class="cov-card-header">
-        <div class="cov-card-icon" style="background:${c.ib}"><i class="ti ${c.icon}" style="color:${c.ic};font-size:14px" aria-hidden="true"></i></div>
+        <div class="cov-card-icon" style="background:${c.ib}"><i class="ti ${c.icon}" style="color:${c.ic};font-size:14px"></i></div>
         <span class="cov-card-title">${c.title}</span>
         <span class="cov-card-badge ${c.bc}">${c.badge}</span>
       </div>
@@ -703,35 +1144,41 @@ function gerar() {
       <div class="arg-box"><div class="arg-label">Argumento de venda</div><div class="arg-text">${c.arg}</div></div>
     </div>`).join('');
 
+  const OBJECOES=[
+    {q:'"Nunca aconteceu nada, não preciso."',r:'Exatamente por isso é o melhor momento — enquanto está tudo bem, o seguro está disponível e o preço é o melhor.'},
+    {q:'"Tá caro, vou pensar."',r:'Quanto custaria substituir seus equipamentos e pagar 2 meses de aluguel parado? O seguro custa uma fração disso por mês.'},
+    {q:'"O prédio é alugado, não é meu problema."',r:'O prédio pode ser do locador, mas o conteúdo é 100% seu. E o contrato de aluguel provavelmente exige seguro contra incêndio.'},
+    {q:'"Seguro não paga na hora que precisa."',r:'Essa preocupação é legítima com seguros mal contratados. Por isso trabalho com seguradora sólida e acompanho do início ao fim.'},
+  ];
+
   const roteiroSteps=[
-    {n:1,t:'Apresente o diagnóstico — não o produto',tx:'Comece mostrando o resultado. O score e os riscos identificados criam urgência antes de você falar de seguro.',f:`"Com base nas informações que o senhor me passou, o negócio tem score de risco ${score} — ${nivelLabel.toLowerCase()}. Deixa eu te mostrar o que isso significa na prática."`},
-    {n:2,t:'Âncora no maior medo',tx:'Para esse perfil, o maior medo é fechar. Lucros cessantes é o argumento mais forte — use antes de falar de preço.',f:'"Se o senhor tivesse um sinistro hoje e ficasse fechado 60 dias — o que aconteceria? Aluguel, funcionários, fornecedores. Esse seguro paga tudo isso enquanto o senhor reconstrói."'},
-    {n:3,t:'Apresente coberturas em blocos',tx:'Agrupe: "as urgentes" primeiro, depois "as recomendadas". Não lista tudo de uma vez.',f:'"Vou te mostrar o que é essencial, depois o que recomendo adicionar — e o senhor decide o que faz mais sentido pro momento."'},
-    {n:4,t:'Relativize o valor',tx:'Compare o prêmio com o custo de um sinistro pequeno. Um dia parado pode custar meses de prêmio.',f:'"Quanto o senhor faz num sábado? Se esse valor cobre 3 meses de prêmio, o seguro se paga com um único sábado que deixou de perder."'},
-    {n:5,t:'Fechamento — escolha limitada',tx:'Não pergunte "vai fechar?". Apresente duas opções e deixe o cliente escolher entre elas.',f:'"Tenho duas opções: a completa com todas as coberturas, e a essencial com incêndio, lucros cessantes e danos elétricos. Qual das duas faz mais sentido pra você começar?"'},
+    {n:1,t:'Apresente o diagnóstico — não o produto',tx:'Comece mostrando o resultado. O score e os riscos criam urgência antes de você falar de seguro.',f:`"O negócio tem score de risco ${score} — ${nivelLabel.toLowerCase()}. Deixa eu te mostrar o que isso significa na prática."`},
+    {n:2,t:'Âncora no maior medo',tx:'Para esse perfil, o maior medo é fechar. Lucros cessantes é o argumento mais forte.',f:'"Se o senhor ficasse fechado 60 dias — o que aconteceria? Aluguel, funcionários, fornecedores. Esse seguro paga tudo isso enquanto o senhor reconstrói."'},
+    {n:3,t:'Apresente coberturas em blocos',tx:'Agrupe: as urgentes primeiro, depois as recomendadas. Não lista tudo de uma vez.',f:'"Vou te mostrar o que é essencial, depois o que recomendo — e o senhor decide o que faz mais sentido pro momento."'},
+    {n:4,t:'Relativize o valor',tx:'Compare o prêmio com o custo de um sinistro pequeno.',f:'"Quanto o senhor faz num sábado? Se esse valor cobre 3 meses de prêmio, o seguro se paga com um único sábado que deixou de perder."'},
+    {n:5,t:'Fechamento — escolha limitada',tx:'Não pergunte "vai fechar?". Apresente duas opções.',f:'"Tenho a opção completa e a essencial com incêndio, lucros cessantes e danos elétricos. Qual das duas faz mais sentido pra você começar?"'},
   ].map(s=>`
     <div class="roteiro-step">
-      <div class="step-num">${s.n}</div>
-      <div class="step-body">
-        <div class="step-title">${s.t}</div>
-        <div class="step-text">${s.tx}</div>
-        <div class="step-fala">${s.f}</div>
+      <div class="roto-num">${s.n}</div>
+      <div class="roto-body">
+        <div class="roto-title">${s.t}</div>
+        <div class="roto-text">${s.tx}</div>
+        <div class="roto-fala">${s.f}</div>
       </div>
     </div>`).join('');
 
-  const objecoesCards=OBJECOES.map(o=>`
+  const obCards = OBJECOES.map(o=>`
     <div class="ob-card">
-      <div class="ob-q"><i class="ti ti-message-question" style="font-size:15px;color:var(--text-3);flex-shrink:0;margin-top:2px" aria-hidden="true"></i>${o.q}</div>
+      <div class="ob-q"><i class="ti ti-message-question" style="font-size:15px;color:var(--text-3);flex-shrink:0;margin-top:2px"></i>${o.q}</div>
       <div class="ob-resp">${o.r}</div>
     </div>`).join('');
 
-  document.getElementById('dash').innerHTML = `
+  const tabId = 'tab_' + Math.random().toString(36).slice(2,8);
+
+  return `
     <div class="result-header">
       <div class="result-avatar">${inits||'?'}</div>
-      <div>
-        <div class="result-name">${nome}</div>
-        <div class="result-sub">${segLabel} · Diagnóstico empresarial</div>
-      </div>
+      <div><div class="result-name">${nome}</div><div class="result-sub">${segLabel} · Diagnóstico empresarial</div></div>
       <div class="result-chip ${chipClass}">${nivelLabel}</div>
     </div>
     <div class="score-center">
@@ -743,59 +1190,68 @@ function gerar() {
       <div class="mcard"><div class="mlabel">Riscos críticos</div><div class="mval" style="color:#C0392B">${altoN}</div></div>
       <div class="mcard"><div class="mlabel">Riscos moderados</div><div class="mval" style="color:#D97706">${medioN}</div></div>
     </div>
-    <div class="view-tabs" role="tablist">
-      <button class="tab-btn active" onclick="switchTab('riscos',this)" role="tab"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Riscos</button>
-      <button class="tab-btn" onclick="switchTab('coberturas',this)" role="tab"><i class="ti ti-chart-bar" aria-hidden="true"></i> Coberturas</button>
-      <button class="tab-btn" onclick="switchTab('proposta',this)" role="tab"><i class="ti ti-file-invoice" aria-hidden="true"></i> Proposta</button>
-      <button class="tab-btn" onclick="switchTab('roteiro',this)" role="tab"><i class="ti ti-route" aria-hidden="true"></i> Roteiro</button>
+    <div class="view-tabs">
+      <button class="tab-btn active" onclick="switchTab('${tabId}','riscos',this)"><i class="ti ti-alert-triangle"></i> Riscos</button>
+      <button class="tab-btn" onclick="switchTab('${tabId}','coberturas',this)"><i class="ti ti-chart-bar"></i> Coberturas</button>
+      <button class="tab-btn" onclick="switchTab('${tabId}','proposta',this)"><i class="ti ti-file-invoice"></i> Proposta</button>
+      <button class="tab-btn" onclick="switchTab('${tabId}','roteiro',this)"><i class="ti ti-route"></i> Roteiro</button>
     </div>
-    <div class="tab-panel active" id="tab-riscos">
-      <div class="sec-label">Riscos e exposições identificados</div>
-      ${riskCards}
-    </div>
-    <div class="tab-panel" id="tab-coberturas">
-      <div class="sec-label">Coberturas recomendadas por prioridade</div>
-      ${covBars}
-    </div>
-    <div class="tab-panel" id="tab-proposta">
-      <div class="sec-label">Coberturas com argumentos de venda</div>
-      ${propostaCards}
-      <div class="divider"></div>
-      <div class="sec-label">Objeções comuns — como responder</div>
-      ${objecoesCards}
-    </div>
-    <div class="tab-panel" id="tab-roteiro">
-      <div class="sec-label">Roteiro da reunião de fechamento</div>
-      <div class="roteiro-wrap">${roteiroSteps}</div>
-    </div>
+    <div id="${tabId}_riscos" class="tab-panel active"><div class="sec-label">Riscos e exposições identificados</div>${riskCards}</div>
+    <div id="${tabId}_coberturas" class="tab-panel"><div class="sec-label">Coberturas recomendadas por prioridade</div>${covBars}</div>
+    <div id="${tabId}_proposta" class="tab-panel"><div class="sec-label">Coberturas com argumentos de venda</div>${propCards}<div class="divider"></div><div class="sec-label">Objeções comuns</div>${obCards}</div>
+    <div id="${tabId}_roteiro" class="tab-panel"><div class="sec-label">Roteiro da reunião de fechamento</div><div class="roteiro-wrap">${roteiroSteps}</div></div>
     <div class="divider"></div>
     <div class="action-row">
-      <button class="btn btn-accent" onclick="copiarResumo(${score},'${nome.replace(/'/g,"\\'")}','${segLabel.replace(/'/g,"\\'")}','${nivelLabel}',${altoN},${medioN})">
-        <i class="ti ti-copy" aria-hidden="true"></i> Copiar resumo
-      </button>
-      <button class="btn btn-primary" onclick="window.print()">
-        <i class="ti ti-printer" aria-hidden="true"></i> Imprimir / PDF
-      </button>
-      <button class="btn" onclick="reiniciar()">
-        <i class="ti ti-refresh" aria-hidden="true"></i> Novo diagnóstico
-      </button>
-    </div>
-  `;
-  go(TOTAL + 1);
+      <button class="btn btn-primary" onclick="window.print()"><i class="ti ti-printer"></i> Imprimir / PDF</button>
+      <button class="btn" onclick="navigator.clipboard.writeText('${nome} · ${segLabel} · Score ${score} · ${nivelLabel}').then(()=>showToast('Copiado!'))"><i class="ti ti-copy"></i> Copiar resumo</button>
+    </div>`;
 }
 
-function switchTab(name, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
+function switchTab(tabId, name, btn) {
+  const parent = btn.closest('.view-tabs');
+  parent.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+  const wrap = parent.nextElementSibling;
+  // find all sibling tab-panels
+  let el = parent.nextElementSibling;
+  while(el && el.classList.contains('tab-panel')) {
+    el.classList.remove('active');
+    el = el.nextElementSibling;
+  }
+  document.getElementById(tabId+'_'+name)?.classList.add('active');
 }
 
-function copiarResumo(score, nome, seg, nivel, alto, medio) {
-  const txt = `DIAGNÓSTICO DE RISCO EMPRESARIAL\n\nCliente: ${nome}\nSegmento: ${seg}\nScore de risco: ${score}/100 — ${nivel}\nRiscos críticos: ${alto}\nRiscos moderados: ${medio}\n\nSyros Financial · Diagnóstico Empresarial`;
-  navigator.clipboard.writeText(txt).then(()=>showToast('Resumo copiado!'));
+// ── GERAR ──
+async function gerar() {
+  const nome = document.getElementById('q_nome').value.trim() || 'Cliente';
+  const dados = {
+    nome, segLabel: rl('seg'),
+    seg:rv('seg'),fat:rv('fat'),imovel:rv('imovel'),equip:rv('equip'),
+    eletro:rv('eletro'),vendaval:rv('vendaval'),estoque:rv('estoque'),
+    roubo_hist:rv('roubo_hist'),area_risco:rv('area_risco'),alarme:rv('alarme'),caixa:rv('caixa'),
+    fluxo:rv('fluxo'),func:rv('func'),risco_f:rv('risco_f'),b2b:rv('b2b'),
+    seg_atual:rv('seg_atual'),cont:rv('cont'),vida:rv('vida'),frota:rv('frota'),
+    res_propria:rv('res_propria'),res_seguro:rv('res_seguro'),
+    carro_pessoal:rv('carro_pessoal'),carro_seguro:rv('carro_seguro'),
+    vida_renda:rv('vida_renda'),investimentos:rv('investimentos'),
+  };
+  dados.score = calcScore(dados);
+  const risks = buildRisks(dados);
+  dados.altoN = risks.filter(r=>r.n==='alto').length;
+  dados.medioN = risks.filter(r=>r.n==='medio').length;
+  dados.nivelLabel = dados.score>=65?'Exposição alta':dados.score>=35?'Exposição moderada':'Exposição baixa';
+
+  document.getElementById('dash').innerHTML = renderDashHTML(dados);
+  go(TOTAL + 1);
+  await salvarDiagnostico(dados);
 }
 
+// ── UI HELPERS ──
+function showLoading(msg) {
+  document.getElementById('loading-msg').textContent = msg || 'Carregando...';
+  document.getElementById('loading').classList.add('show');
+}
+function hideLoading() { document.getElementById('loading').classList.remove('show'); }
 function showToast(msg) {
   const t = document.getElementById('toast');
   document.getElementById('toast-msg').textContent = msg;
@@ -803,24 +1259,13 @@ function showToast(msg) {
   setTimeout(()=>t.classList.remove('show'), 3000);
 }
 
-function reiniciar() {
-  document.getElementById('s-res').classList.remove('active');
-  document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
-  document.getElementById('q_nome').value='';
-  cur=1;
-  document.getElementById('s1').classList.add('active');
-  document.getElementById('prog-fill').style.width='16%';
-  document.getElementById('prog-pct').textContent='16%';
-  document.getElementById('prog-label').textContent='Passo 1 de 6';
-  initDots();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function reiniciarNav() {
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('nav-diag').classList.add('active');
-  reiniciar();
-}
+// ── INIT ──
+(async () => {
+  const ok = await verificarSessao();
+  if (ok) {
+    await entrarApp();
+  }
+})();
 </script>
 </body>
 </html>
